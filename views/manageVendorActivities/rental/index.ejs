@@ -1,0 +1,140 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Vendor Activities</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Vendor Activities</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Rental</a></li>
+                        <li class="breadcrumb-item active">Index</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <div class="col-12 px-3 mb-3 d-flex justify-content-between align-items-center">
+                        <h4 class="m-t-0 header-title"><b>Rental</b></h4>
+                    </div>
+                    <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0"
+                        width="100%">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Activity</th>
+                                <th>Brand/Model</th>
+                                <th>Quantity</th>
+                                <th>Price (INR)</th>
+                                <th>Level</th>
+                                <th>Vendor Email</th>
+                                <th>Vendor Mobile</th>
+                                <th>Is Approved</th>
+                                <th>Status</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% data.forEach((value, key) => { %>
+
+                            <tr>
+                                <td><%= value?.title || '' %></td>
+                                <td><%= value?.activity?.title || '' %></td>
+                                <td><%= value?.brand?.name || '' %> <%= value?.model?.name || '' %> (<%= value?.model?.type || '' %>)</td>
+                                <td><%= value?.quantity || '' %></td>
+                                <td><%= value?.price?.per_hour?.amount || '' %>/Hour | <%= value?.price?.per_day?.amount || '' %>/Day</td>
+                                <td><%= (value?.level == '1') ? 'Beginner' : (value?.level == '2') ? 'Intermediate' : "Expert" %></td>
+                                <td><%= value?.user?.email || '' %></td>
+                                <td><%= value?.user?.country_code +' '+ value?.user?.mobile_no  %></td>
+                                <td>
+
+                                    <%if (value?.price?.per_hour?.admin_amount != 0.00 && value?.price?.per_day?.admin_amount != 0.00) { %>
+                                        <%if (value.is_approved == '1') { %>
+
+                                            Approved
+
+                                        <% } else{ %>
+
+                                            <input type="checkbox" class="sa-status" data-plugin="switchery" data-size="small" data-color="#1bb99a" data-id="<%= value.id %>" value="<%= value.is_approved %>"  <%= (value.is_approved == '1') ? 'checked' : '' %> />
+                                            <form id="status-form-<%= value.id %>" action="/admin/vendor_rental_activities/is_approved/<%= value.id %>" method="post" style="display: none;" >
+                                                <input class="status-value-<%= value.id %>" type="hidden" name="status" value="<%= value.status %>">
+                                            </form>
+
+                                        <% } %>
+
+                                    <% } else{ %>
+
+                                        <a href="javascript:void(0);" class="__activityAmount" data-id="<%= value.id %>" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Amount</a>
+
+                                    <% } %>
+
+                                </td>
+                                <td>
+                                    <input type="checkbox" class="sa-status" data-plugin="switchery" data-size="small" data-color="#1bb99a" data-id="<%= value.id %>" value="<%= value.status %>"  <%= (value.status == '1') ? 'checked' : '' %> />
+                                    <form id="status-form-<%= value.id %>" action="/admin/vendor_rental_activities/update_status/<%= value.id %>" method="post" style="display: none;" >
+                                        <input class="status-value-<%= value.id %>" type="hidden" name="status" value="<%= value.status %>">
+                                    </form>
+                                    <p style="display: none;" ><%= (value.status == '1') ? 'Active' : 'Inactive' %></p>
+                                </td> 
+                                <td class="text-center">
+                                    <a href="/admin/vendor_rental_activities/view/<%= value.id %>" class="hidden on-editing save-row pr-2 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                    <%if (value.is_approved == '1') { %>
+                                        <a href="javascript:void(0);" class="__addDiscount" data-id="<%= value.id %>" data-toggle="modal" data-target="#myModal2"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="Apply Discount"><i class="fa fa-plus-square-o"></i></span></a>
+                                    <% } %>
+                                </td>
+                            </tr>
+
+                            <% }) %></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-plus"></i> Add New Amount</h6>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin/add_new_rental_activity_amount" method="post" id="addNewAmount">
+                    <div id="__cloneHtml">
+                        
+                    </div>
+                    <div class="form-group text-right m-b-0">
+                        <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal 2 -->
+<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-plus"></i> Add Discount</h6>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin/store_rental_activity_discount" method="post" id="addDiscount">
+                    <div id="__cloneDiscountHtml">
+
+                    </div>
+                    <div class="form-group text-right m-b-0">
+                        <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

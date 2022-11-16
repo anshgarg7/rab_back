@@ -1,0 +1,16 @@
+POST: http://localhost:3000/api/v1/user/verify_reset_link
+body: email
+response error:
+{
+    "success": false,
+    "error": true,
+    "message": "Token has been expired!"
+}
+
+response success
+{
+    "success": true,
+    data:{email:'hansa.technofy@gmail.com'},
+    "error": false,
+    "message": "Token is valid!"
+}

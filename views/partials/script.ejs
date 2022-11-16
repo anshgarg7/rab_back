@@ -1,0 +1,30 @@
+<!-- jQuery  -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<!-- Popper for Bootstrap -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/metisMenu.min.js"></script>
+<script src="/assets/js/waves.js"></script>
+<script src="/assets/js/jquery.slimscroll.js"></script>
+<!--switchery-->
+<script src="/assets/plugins/switchery/switchery.min.js"></script>
+<script src="/assets/plugins/select2/js/select2.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/bootstrap-select/js/bootstrap-select.js" type="text/javascript"></script>
+
+<%if (typeof stackScript !== "undefined") { %>
+    
+    <%- include(stackScript) %>
+
+<% } %>
+
+<!-- App js -->
+<script src="/assets/js/jquery.core.js"></script>
+<script src="/assets/js/jquery.app.js"></script>
+<!-- toastr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<%if (typeof customScript !== "undefined") { %>
+    
+    <%- include(customScript) %>
+
+<% } %>

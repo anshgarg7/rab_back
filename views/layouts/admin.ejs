@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <%if (typeof key == "undefined") { %>
+
+        <%- include('../partials/head') %>
+
+    <% } else{ %>
+
+        <head>
+            <meta charset="utf-8" />
+            <title>RAB</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <link rel="shortcut icon" href="/assets/images/favicon.ico">
+            <link href="/assets/plugins/spinkit/spinkit.css" rel="stylesheet" />
+            <!-- App css -->
+            <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+            
+            <script src="/assets/js/modernizr.min.js"></script>
+            <style>
+                label.error {
+                color: #f96a74;
+            }
+            </style>
+        </head>
+        
+    <% } %>
+
+    <body>
+
+        <div class="loader" style="display: none;">
+            <div class="sk-wave">
+                <div class="sk-rect sk-rect1"></div>
+                <div class="sk-rect sk-rect2"></div>
+                <div class="sk-rect sk-rect3"></div>
+                <div class="sk-rect sk-rect4"></div>
+                <div class="sk-rect sk-rect5"></div>
+            </div>
+        </div>
+
+        <%if (typeof key == "undefined") { %>
+
+        <div id="wrapper">
+
+            <%- include('../partials/header') %>
+
+            <%- include('../partials/sidebar') %>
+
+            <div class="content-page">
+
+        <% } %>
+
+            <%- body %>
+
+        <%if (typeof key == "undefined") { %>
+
+                <%- include('../partials/footer') %>
+            
+            </div>
+        </div>
+
+            <%- include('../partials/script') %>
+            
+        <% } else{ %>
+
+        <!-- jQuery  -->
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/metisMenu.min.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/jquery.slimscroll.js"></script>
+        <!-- jquery-validate -->
+        <script src="/js/jquery.validate.min.js"></script>
+        <script src="/js/additional-validate-methods.min.js"></script>
+        <script>
+        $.validator.addMethod(
+            "validEmail", function (value, element) {
+                var pattern = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                return pattern.test(value);
+            },'Please enter a valid email address.'
+        );
+        $('#loginForm').validate({
+            rules :{
+                email : {
+                    required : true,
+                    validEmail: true,
+                    maxlength: 40,
+                },
+                password : {
+                    required : true,
+                    minlength: 8,
+                    maxlength: 16,
+                }
+            },
+            messages :{
+                email : {
+                    required : "Please enter email.",
+                    maxlength: "Email may not be greater than 40 characters.",
+                },
+                password : {
+                    required : "Please enter password.",
+                    minlength: "Password must be at least 8 characters.",
+                    maxlength: "Password may not be greater than 16 characters.",
+                }
+            }
+        });
+        </script>
+        <!-- App js -->
+        <script src="/assets/js/jquery.core.js"></script>
+        <script src="/assets/js/jquery.app.js"></script>
+        <!-- toastr -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        
+        <% } %>
+
+        <% if(locals.toasts) { %>
+            
+            <%- toasts %>
+
+        <% } %>
+        
+        <script>
+            $('a:link').on('click', function() {
+                if(!['javascript:void(0);', '#'].includes($(this).attr('href'))) {
+                    $('.loader').show();
+                }
+            });
+            // $('form').on('submit', function() {
+            //         $('.loader').show();
+            // });
+            $(window).bind("pageshow", function(event) {
+                $('.loader').hide();
+            });
+        </script>
+
+    </body>
+</html>

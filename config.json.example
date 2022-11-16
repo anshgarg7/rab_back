@@ -1,0 +1,49 @@
+{
+    "development": {
+      "username": "root",
+      "password": null,
+      "database": "blank_rab",
+      "host": "127.0.0.1",
+      "dialect": "mysql",
+      "SECRET": "RABDEVELOPEDWESHCOINDIABYGREATDEVELOPER",
+      "mailUser": "hansa.technofy@gmail.com",
+      "mailPass": "Han#123@",
+      "mailService": "gmail",
+      "SendGridApiKey": "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",
+      "ADMIN_EMAIL": "info@tripperpedia.com",
+      "ADMIN_NAME": "tripperpedia",
+      "TwilioAccountSid": "AC04127766dd06f30723fa704ed2e35598",
+      "TwilioAuthToken": "bc2d9f1074f308a7a111a67b4d0ef1fe", 
+      "TwilioFrom": "+16066128033",
+      "RazorpayKeyId": "rzp_test_4tNCfxYDQ2VCb0",
+      "RazorpaySecret": "zAujUONdQYlWyVcFAAAgPpPe",
+      "BASE_URL": "http://localhost:3000/",
+      "FrontendUrl": "http://localhost:3001/",
+      "contactEmail": "hansathakur222@gmail.com"
+    },
+    "production": {
+      "username": "root",
+      "password": null,
+      "database": "rab",
+      "host": "127.0.0.1",
+      "dialect": "mysql",
+      "SECRET":"RABDEVELOPEDWESHCOINDIABYGREATDEVELOPER",
+      "mailUser" :"karandeep.technofy@gmail.com",
+      "mailPass":"Karan@9779019444",
+      "mailService": "gmail",
+      "TwilioAccountSid": "AC04127766dd06f30723fa704ed2e35598",
+      "TwilioAuthToken":"bc2d9f1074f308a7a111a67b4d0ef1fe", 
+      "TwilioFrom":"+16066128033",
+      "RazorpayKeyId": "rzp_test_4tNCfxYDQ2VCb0",
+      "RazorpaySecret": "zAujUONdQYlWyVcFAAAgPpPe",
+      "BASE_URL":"http://localhost:3001/",
+      "contactEmail":"hansathakur222@gmail.com"
+    },
+    "test": {
+      "username": "root",
+      "password": null,
+      "database": "rab",
+      "host": "127.0.0.1",
+      "dialect": "mariadb"
+    }
+  }

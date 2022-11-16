@@ -1,0 +1,128 @@
+<div class="form-group row">
+    <div class="col-6">
+        <label>First Name</label>
+        <input type="text" name="first_name" value="<%= typeof user != 'undefined' ? user.first_name : '' %>" class="form-control" placeholder="First Name" autocomplete="off">
+    </div>
+    <div class="col-6">
+        <label>Last Name</label>
+        <input type="text" name="last_name" value="<%= typeof user != 'undefined' ? user.last_name : '' %>" class="form-control" placeholder="Last Name" autocomplete="off">
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-4">
+        <label>Email</label>
+        <input type="email" name="email" value="<%= typeof user != 'undefined' ? user.email : '' %>" class="form-control" parsley-trigger="change" placeholder="Email" autocomplete="off">
+    </div>
+
+    <%if (typeof user == 'undefined') { %>
+
+    <div class="col-4">
+        <label>Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" autocomplete="off">
+    </div>
+    <div class="col-4">
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" autocomplete="off">
+    </div>
+
+    <% } %>
+    
+</div>
+<div class="form-group row">
+    <div class="col-4 phone-selector intelMobile">
+        <label>Mobile</label>
+        <input id="phone" type="tel" name="mobile_no" value="<%= typeof user != 'undefined' ? user.country_code : '' %><%= typeof user != 'undefined' ? user.mobile_no : '' %>" class="form-control" placeholder="Mobile" autocomplete="off">
+        <span id="valid-msg" class="hide">✓ Valid</span>
+        <span id="error-msg" class="hide"></span>
+        <input type="hidden" name="country_code" value="" class="selected-country-code"/>
+        <input type="hidden" name="country_iso" value="" class="selected-country-iso"/>
+    </div>
+    <div class="col-4">
+        <label>Gender</label>
+        <select name="gender" class="form-control" autocomplete="off">
+            <option value="">Select</option>
+            <option value="Male" <%= typeof user != 'undefined' && user.gender == 'Male' ? 'selected' : '' %>>Male</option>
+            <option value="Female" <%= typeof user != 'undefined' && user.gender == 'Female' ? 'selected' : '' %>>Female</option>
+            <option value="Other" <%= typeof user != 'undefined' && user.gender == 'Female' ? 'Other' : '' %>>Other</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <label>Date of Birth</label>
+        <input type="text" name="dob" value="<%= typeof user != 'undefined' ? moment(user.dob).format('DD-MM-YYYY') : '' %>" class="form-control" onkeydown="return false;" placeholder="DD-MM-YYYY" id="datepicker-autoclose" autocomplete="off">
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-4">
+        <label>Country</label>
+        <select name="country" data-value="<%= typeof user != 'undefined' ? user.country : '' %>" class="countries form-control select2" id="countryId" autocomplete="off">
+            <option value="">Select</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <label>State</label>
+        <select name="state" data-value="<%= typeof user != 'undefined' ? user.state : '' %>" class="states form-control select2" id="stateId" autocomplete="off">
+            <option value="">Select</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <label>City</label>
+        <select name="city" data-value="<%= typeof user != 'undefined' ? user.city : '' %>" class="cities form-control select2" id="cityId" autocomplete="off">
+            <option value="">Select</option>
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-9">
+        <label>Address</label>
+        <input type="text" name="address" value="<%= typeof user != 'undefined' ? user.address : '' %>" class="form-control" placeholder="Address" autocomplete="off">
+    </div>
+    <div class="col-3">
+        <label>Pin Code</label>
+        <input type="text" name="pin_code" value="<%= typeof user != 'undefined' ? user.pin_code : '' %>" class="form-control"  placeholder="Pin Code" autocomplete="off">
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-12">
+        <label>Landmark</label>
+        <input type="text" name="landmark" value="<%= typeof user != 'undefined' ? user.landmark : '' %>" class="form-control"  placeholder="Landmark" autocomplete="off">
+    </div>
+</div>
+<div class="form-group row dragDrop">
+    <div class="col-12">
+        <label>Image <small><b>Note: </b><i>Only .png, .jpg, .jpeg, .gif format are accepted.</i></small></label>
+        <div class="row m-0">
+            <div class="dropzone-wrapper col-8">
+                <div class="dropzone-desc">
+                <i class="fa fa-cloud-upload"></i>
+                <p>Choose an image file or drag it here.</p>
+                </div>
+                <input type="file" name="image" accept="image/png,image/gif,image/jpeg" class="dropzone" autocomplete="off">
+            </div>
+            <div class="preview-zone hidden col-4">
+                <div class="box box-solid">
+                    <div class="position-absolute" style="right: 0;">
+                        <button style="display: none;" type="button" class="btn btn-danger btn-xs remove-preview">
+                            <i class="fa fa-times"></i> Remove
+                        </button>
+                    </div>
+                    <div class="box-body">
+
+                        <%if (typeof user != 'undefined') { %>
+
+                        <img width="200" id="imageData" src="<%= user.image %>">
+
+                        <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-12 mt-2">
+        <label>Status</label>
+        <input type="checkbox" name="status" value="1" data-plugin="switchery" data-color="#1bb99a" <%= typeof user != 'undefined' && user.status == '1' ? 'checked' : typeof user == 'undefined' ? 'checked' : '' %>>
+    </div>
+</div>
+<button type="submit" class="btn btn-custom waves-effect waves-light">Submit</button>

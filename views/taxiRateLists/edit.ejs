@@ -1,0 +1,40 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Taxi Rate List</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Taxi Rate List</a></li>
+                        <li class="breadcrumb-item active">Edit</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box">
+                    <h4 class="m-t-0 m-b-30 header-title">Edit Taxi Rate List</h4>
+                    <form action="/admin/taxi_rate_list/update/<%= data.id %>" method="post" id="taxiRateListForm">
+
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Type</label>
+                                <input type="text" value="<%= typeof data != 'undefined' ? data.type : '' %>" class="form-control" readonly="true">
+                            </div>
+                            <div class="col-6">
+                                <label>/KM Charge (INR)</label>
+                                <input type="text" name="per_km_charge" value="<%= typeof data != 'undefined' ? data.per_km_charge : '' %>" class="form-control decimalNumber" placeholder="0.00" autocomplete="off">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-custom waves-effect waves-light">Submit</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+

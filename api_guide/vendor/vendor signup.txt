@@ -1,0 +1,29 @@
+POST: http://localhost:3000/api/v1/vendor/signup
+email:hansa.technofy@gmail.com
+password:password@123
+first_name:hansu
+mobile_no:7973222322
+alternate_mobile:675433344
+category_id:3
+address:mohali chd
+lat:123.4
+long:234.765
+description:hello i am a tester
+visiting_card:1
+name:test
+kyc_address:mohali chd panjab
+account_name:shyam
+account_no:454533434343
+ifsc_code:punb34343
+primary_bank:1,
+photo:
+certificate:
+visiting_image:
+identity
+
+RESPONSE: 
+{
+    "success": true,
+    "error": false,
+    "message": "User signup successfully"
+}

@@ -1,0 +1,8 @@
+Method :DELETE: http://localhost:3000/api/v1/vendor/activity/delete/6
+headers: token
+response:
+ {
+    "success": true,
+    "error": false,
+    "message": "Successfully deleted activity data."
+}

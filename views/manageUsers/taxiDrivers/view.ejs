@@ -1,0 +1,85 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Users</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Admin</a></li>
+                        <li class="breadcrumb-item active">View</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center card-box">
+                    <div class="clearfix"></div>
+                    <div class="member-card">
+                        <div class="thumb-xl member-thumb m-b-10 mx-auto">
+                            <img src="<%= taxiDriver.image %>" class="rounded-circle img-thumbnail" alt="profile-image">
+                            <i class="mdi mdi-star-circle member-star text-success" title="verified user"></i>
+                        </div>
+                        <div class="">
+                            <h4 class="m-b-5 font-18"><%= taxiDriver?.first_name || '' %> <%= taxiDriver?.last_name || '' %></h4>
+                            <p class="text-muted m-b-0"><span class="text-pink"> <%= taxiDriver?.email || '' %> </span> </p>
+                            <p class="text-muted"> <%= taxiDriver?.country_code +' '+ taxiDriver?.mobile_no || '' %> </p>
+                        </div>
+                        <p class="text-muted font-13"> <%= taxiDriver?.city || '' %>, <%= taxiDriver?.state || '' %>, <%= taxiDriver?.country || '' %> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-20">Details</h4>
+                    <div class="">
+                        <div class="">
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Gender:</span> <%= taxiDriver?.gender || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Date of Birth:</span> <%= moment(taxiDriver?.dob).format('DD-MM-YYYY') || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Address:</span> <span class="font-13 m-b-0"> <%= taxiDriver?.address || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Pin Code:</span> <span class="font-13 m-b-0"> <%= taxiDriver?.pin_code || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Landmark:</span> <span class="font-13 m-b-0"> <%= taxiDriver?.landmark || '' %> </span></h5>
+                        </div>
+                    </div>
+                    <h4 class="header-title mt-4 m-b-20">Taxi Driver Business Details</h4>
+                    <div class="">
+                        <div class="">
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Brand:</span> <%= taxiDriver?.taxi_driver_business_detail?.brand?.name || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Model:</span> <%= taxiDriver?.taxi_driver_business_detail?.model?.name || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Type:</span> <%= taxiDriver?.taxi_driver_business_detail?.model?.type || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Registration Number:</span> <span class="font-13 m-b-0"> <%= taxiDriver?.taxi_driver_business_detail?.registration_no || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Location:</span> <span class="font-13 m-b-0"> <%= taxiDriver?.taxi_driver_business_detail?.location || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Driving Area Radius (KM):</span> <span class="font-13 m-b-0"> <%= taxiDriver?.taxi_driver_business_detail?.driving_area_radius || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">License Number:</span> <span class="font-13 m-b-0"> <%= taxiDriver?.taxi_driver_business_detail?.license_no || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">License Expiry Date:</span> <span class="font-13 m-b-0"> <%= moment(taxiDriver?.taxi_driver_business_detail?.license_expiry_date).format('DD-MM-YYYY') || '' %> </span></h5>
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-6 d-flex align-items-center mt-3">
+                                <%if (typeof taxiDriver != 'undefined' && typeof taxiDriver.taxi_driver_business_detail.license_fornt_image != 'undefined') { %>
+                                    <div class="viewPic">
+                                    <img src="<%= taxiDriver.taxi_driver_business_detail.license_fornt_image %>">
+                                    </div>
+                                    <label>License Front Image</label>
+                        
+                                <% } %>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-6 d-flex align-items-center mt-3">
+                                <%if (typeof taxiDriver != 'undefined' && typeof taxiDriver.taxi_driver_business_detail.license_back_image != 'undefined') { %>
+                                    <div class="viewPic">
+                                        <img src="<%= taxiDriver.taxi_driver_business_detail.license_back_image %>">
+                                    </div>
+                                    
+                                    <label>License Back Image</label>
+                        
+                                <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

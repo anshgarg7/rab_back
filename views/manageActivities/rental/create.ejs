@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Activities</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Activity</a></li>
+                        <li class="breadcrumb-item active">Create</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box">
+                    <h4 class="m-t-0 m-b-30 header-title">Add Activity</h4>
+                    <form role="form" action="/admin/activities_rental/store" method="POST" enctype="multipart/form-data" id="activityForm">
+
+                        <%- include('form') %>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+

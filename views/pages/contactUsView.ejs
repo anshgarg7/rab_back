@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Pages</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item active"> Contact Us View </li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <div class="col-12 px-3 mb-3 d-flex justify-content-between align-items-center">
+                        <h4 class="m-t-0 header-title"><b> Contact Us View </b></h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <h4 class="m-b-30 m-t-0 header-title">Query ? : <%- data?.message %></h4>
+                                <form action="/admin/contact_us/reply_meaasge/<%= data.id %>" method="post" id="contactUsForm">
+                                    <div class="form-group row">
+                                        <div class="col-12 mt-2">
+
+                                            <%if (data.is_reply == 0) { %>
+
+                                                <textarea id="elm1" name="reply_message"></textarea>
+        
+                                            <% } else { %>
+
+                                               <h5> Answer : <%-  data?.reply_message %> </h5>
+                                                
+                                            <% } %>
+
+                                        </div>
+                                    </div>
+                                    <%if (data.is_reply == 0) { %>
+
+                                        <button type="submit" class="btn btn-custom waves-effect waves-light">Submit</button>
+
+                                    <% } else { %>
+
+                                         
+                                    <% } %>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

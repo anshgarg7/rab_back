@@ -1,0 +1,24 @@
+<script>
+$('.pc-box').change(function() {
+    if($(this).is(':checked')){
+        $(this).closest('.justify-content-start').next().find('.check').prop('checked', true)
+        $(this).closest('.justify-content-start').next().find("input[type='checkbox']").prop('readonly', false)
+    } else{
+        $(this).closest('.justify-content-start').next().find("input[type='checkbox']").prop('checked', false)
+        $(this).closest('.justify-content-start').next().find("input[type='checkbox']").not('.check').prop('readonly', true)
+    }
+});
+
+$('.check').change(function() {
+    if($(this).is(':checked')){
+        $(this).closest('.d-flex').prev().find('.pc-box').prop('checked', true)
+        $(this).closest('.d-flex').find("input[type='checkbox']").prop('readonly', false)
+    } else{
+        $(this).closest('.d-flex').prev().find("input[type='checkbox']").prop('checked', false)
+        $(this).closest('.d-flex').find("input[type='checkbox']").prop('checked', false)
+        $(this).closest('.d-flex').find("input[type='checkbox']").not('.check').prop('readonly', true)
+    }
+});
+
+$('.pc-box , .check').trigger('change');
+</script>

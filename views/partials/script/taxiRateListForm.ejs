@@ -1,0 +1,16 @@
+<!-- jquery-validate -->
+<script src="/js/jquery.validate.min.js"></script>
+<script>
+    $('#taxiRateListForm').validate({
+        rules :{
+            per_km_charge : {
+                required : true,
+            },
+        },
+        messages :{
+            per_km_charge : {
+                required : "Please enter /KM charge.",
+            },
+        }
+    });
+</script>

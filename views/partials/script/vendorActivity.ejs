@@ -1,0 +1,17 @@
+<!-- video magnific-popup -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        if($(".popup-vimeo").length > 0){
+            $('.popup-vimeo').magnificPopup({
+                disableOn: 700,
+                type: 'iframe',
+                mainClass: 'mfp-fade',
+                removalDelay: 160,
+                preloader: false,
+                fixedContentPos: false
+            });
+        }
+    });
+</script>

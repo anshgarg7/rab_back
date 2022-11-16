@@ -1,0 +1,13 @@
+POST: http://localhost:3000/api/v1/vendor/help/add
+header param: token
+body:
+email:hansa.technofy@gmail.com
+message:'hello sir'
+user_id:2
+
+Response:
+ {
+    "success": true,
+    "error": false,
+    "message": "Successfuly added!"
+}

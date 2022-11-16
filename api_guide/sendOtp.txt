@@ -1,0 +1,19 @@
+Post:http://localhost:3000/api/v1/user/sendOTPMobile
+body: {mobile_no:789765433}
+
+Error Response: 
+{
+    "success": false,
+    "error": true,
+     message: 'User already exists!'
+}
+
+Success Response:
+{
+    "success": true,
+    "error": false,
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im1vYmlsZV9ubyI6Ijc5NzM4NDg4MTAiLCJvdHAiOjgyOTN9LCJleHAiOjE2NDM5NTc3NTI3MDEsImlhdCI6MTY0Mzk1NzE1Mn0.yQso0UcdZW5cudK8naivaaH1DvPNwiM9CnKZW-02nl0"
+    },
+    "message": "Please verify your number."
+}

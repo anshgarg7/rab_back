@@ -1,0 +1,31 @@
+POST: http://localhost:3000/api/v1/vendor/vehicle/add
+headers param :token
+body: 
+category_id:2
+company_id:3
+model_id:6
+price:12
+quantity:1
+item_take[0]:shooes
+item_take[1]:glove
+services[0]:Tea
+years[0][name]:2019
+years[1][name]:2020
+years[2][name]:2021
+years[0][registration_no]:HP3443
+years[1][registration_no]:HP3442
+years[2][registration_no]:HP34425
+items[0][name]:glove
+items[0][price]:20
+items[1][name]:shoes
+items[1][price]:30
+
+h_images:
+v_images:
+
+Response:
+{
+    "success": true,
+    "error": false,
+    "message": "Successfully added vehicle!"
+}

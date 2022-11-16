@@ -1,0 +1,532 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Permissions</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                        <li class="breadcrumb-item active">Permissions</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="">
+                    <div class="card-box">
+                        <form action="/admin/users/sub_admin/permissions/update/<%= subAdminId %>" method="post">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <h4 class="m-t-0 header-title"><b>Manage Sub Admin Permissions</b></h4>
+                                    <h6 class=" m-b-15 m-t-20">Manage Users</h6>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.sub_admin__view != 'undefined' && data.sub_admin__view == '1' ? 'checked' : '' %> >
+                                                        <label> Sub Admin </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="sub_admin__view">
+                                                        <input class="check" type="checkbox" name="status[sub_admin__view]" value="1" <%= typeof data.sub_admin__view != 'undefined' && data.sub_admin__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="sub_admin__add">
+                                                        <input type="checkbox" name="status[sub_admin__add]" value="1" readonly <%= typeof data.sub_admin__add != 'undefined' && data.sub_admin__add == '1' ? 'checked' : '' %> >
+                                                        <label> Add </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="sub_admin__edit">
+                                                        <input type="checkbox" name="status[sub_admin__edit]" value="1" readonly <%= typeof data.sub_admin__edit != 'undefined' && data.sub_admin__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="sub_admin__delete">
+                                                        <input type="checkbox" name="status[sub_admin__delete]" value="1" readonly <%= typeof data.sub_admin__delete != 'undefined' && data.sub_admin__delete == '1' ? 'checked' : '' %> >
+                                                        <label> Delete </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.vendor__view != 'undefined' && data.vendor__view == '1' ? 'checked' : '' %> >
+                                                        <label> Vendors </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="vendor__view">
+                                                        <input class="check" name="status[vendor__view]" type="checkbox" value="1" <%= typeof data.vendor__view != 'undefined' && data.vendor__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="vendor__add">
+                                                        <input type="checkbox" name="status[vendor__add]" value="1" readonly <%= typeof data.vendor__add != 'undefined' && data.vendor__add == '1' ? 'checked' : '' %> >
+                                                        <label> Add </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="vendor__edit">
+                                                        <input type="checkbox" name="status[vendor__edit]" value="1" readonly <%= typeof data.vendor__edit != 'undefined' && data.vendor__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="vendor__delete">
+                                                        <input type="checkbox" name="status[vendor__delete]" value="1" readonly <%= typeof data.vendor__delete != 'undefined' && data.vendor__delete == '1' ? 'checked' : '' %> >
+                                                        <label> Delete </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>    
+
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.user__view != 'undefined' && data.user__view == '1' ? 'checked' : '' %> >
+                                                        <label> Users </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="user__view">
+                                                        <input class="check" type="checkbox" name="status[user__view]" value="1" <%= typeof data.user__view != 'undefined' && data.user__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="user__add">
+                                                        <input type="checkbox" name="status[user__add]" value="1" readonly <%= typeof data.user__add != 'undefined' && data.user__add == '1' ? 'checked' : '' %> >
+                                                        <label> Add </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="user__edit">
+                                                        <input type="checkbox" name="status[user__edit]" value="1" readonly <%= typeof data.user__edit != 'undefined' && data.user__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="user__delete">
+                                                        <input type="checkbox" name="status[user__delete]" value="1" readonly <%= typeof data.user__delete != 'undefined' && data.user__delete == '1' ? 'checked' : '' %> >
+                                                        <label> Delete </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.driver__view != 'undefined' && data.driver__view == '1' ? 'checked' : '' %> >
+                                                        <label> Taxi Drivers </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="driver__view">
+                                                        <input class="check" type="checkbox" name="status[driver__view]" value="1" <%= typeof data.driver__view != 'undefined' && data.driver__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="driver__add">
+                                                        <input type="checkbox" name="status[driver__add]" value="1" readonly <%= typeof data.driver__add != 'undefined' && data.driver__add == '1' ? 'checked' : '' %> >
+                                                        <label> Add </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="driver__edit">
+                                                        <input type="checkbox" name="status[driver__edit]" value="1" readonly <%= typeof data.driver__edit != 'undefined' && data.driver__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="driver__delete">
+                                                        <input type="checkbox" name="status[driver__delete]" value="1" readonly <%= typeof data.driver__delete != 'undefined' && data.driver__delete == '1' ? 'checked' : '' %> >
+                                                        <label> Delete </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.hotel__view != 'undefined' && data.hotel__view == '1' ? 'checked' : '' %> >
+                                                        <label> Hotels </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="hotel__view">
+                                                        <input class="check" type="checkbox" name="status[hotel__view]" value="1" <%= typeof data.hotel__view != 'undefined' && data.hotel__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="hotel__add">
+                                                        <input type="checkbox" name="status[hotel__add]" value="1" readonly <%= typeof data.hotel__add != 'undefined' && data.hotel__add == '1' ? 'checked' : '' %> >
+                                                        <label> Add </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="hotel__edit">
+                                                        <input type="checkbox" name="status[hotel__edit]" value="1" readonly <%= typeof data.hotel__edit != 'undefined' && data.hotel__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="hotel__delete">
+                                                        <input type="checkbox" name="status[hotel__delete]" value="1" readonly <%= typeof data.hotel__delete != 'undefined' && data.hotel__delete == '1' ? 'checked' : '' %> >
+                                                        <label> Delete </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6 class=" m-b-15 m-t-20">Manage Categories</h6>
+                                    <div class="d-flex justify-content-start">
+                                        <div class="w-100">
+                                            <div class="checkbox checkbox-success form-check-inline">
+                                                <input class="pc-box" type="checkbox" <%= typeof data.categories__view != 'undefined' && data.categories__view == '1' ? 'checked' : '' %> >
+                                                <label> Manage Categories </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="pl-4">
+                                            <div class="checkbox checkbox-primary form-check-inline">
+                                                <input type="hidden" name="slug[]" value="categories__view">
+                                                <input class="check" type="checkbox" name="status[categories__view]" value="1" <%= typeof data.categories__view != 'undefined' && data.categories__view == '1' ? 'checked' : '' %> >
+                                                <label> View </label>
+                                            </div>
+                                            <div class="checkbox checkbox-primary form-check-inline">
+                                                <input type="hidden" name="slug[]" value="categories__edit">
+                                                <input type="checkbox" name="status[categories__edit]" value="1" readonly <%= typeof data.categories__edit != 'undefined' && data.categories__edit == '1' ? 'checked' : '' %> >
+                                                <label> Edit/Update </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6 class=" m-b-15 m-t-20">Manage Activities</h6>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.adventure_activities__view != 'undefined' && data.adventure_activities__view == '1' ? 'checked' : '' %> >
+                                                        <label> Adventure Activities </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="adventure_activities__view">
+                                                        <input class="check" type="checkbox" name="status[adventure_activities__view]" value="1" <%= typeof data.adventure_activities__view != 'undefined' && data.adventure_activities__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="adventure_activities__add">
+                                                        <input type="checkbox" name="status[adventure_activities__add]" value="1" readonly <%= typeof data.adventure_activities__add != 'undefined' && data.adventure_activities__add == '1' ? 'checked' : '' %> >
+                                                        <label> Add </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="adventure_activities__edit">
+                                                        <input type="checkbox" name="status[adventure_activities__edit]" value="1" readonly <%= typeof data.adventure_activities__edit != 'undefined' && data.adventure_activities__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.rental_activities__view != 'undefined' && data.rental_activities__view == '1' ? 'checked' : '' %> >
+                                                        <label> Rental Activities </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="rental_activities__view">
+                                                        <input class="check" type="checkbox" name="status[rental_activities__view]" value="1" <%= typeof data.rental_activities__view != 'undefined' && data.rental_activities__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="rental_activities__add">
+                                                        <input type="checkbox" name="status[rental_activities__add]" value="1" readonly <%= typeof data.rental_activities__add != 'undefined' && data.rental_activities__add == '1' ? 'checked' : '' %> >
+                                                        <label> Add </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="rental_activities__edit">
+                                                        <input type="checkbox" name="status[rental_activities__edit]" value="1" readonly <%= typeof data.rental_activities__edit != 'undefined' && data.rental_activities__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6 class=" m-b-15 m-t-20">Vendor Activities</h6>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.vendor_adventure_activities__view != 'undefined' && data.vendor_adventure_activities__view == '1' ? 'checked' : '' %> >
+                                                        <label> Adventure Activities </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="vendor_adventure_activities__view">
+                                                        <input class="check" type="checkbox" name="status[vendor_adventure_activities__view]" value="1" <%= typeof data.vendor_adventure_activities__view != 'undefined' && data.vendor_adventure_activities__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="vendor_adventure_activities__edit">
+                                                        <input type="checkbox" name="status[vendor_adventure_activities__edit]" value="1" readonly <%= typeof data.vendor_adventure_activities__edit != 'undefined' && data.vendor_adventure_activities__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.vendor_rental_activities__view != 'undefined' && data.vendor_rental_activities__view == '1' ? 'checked' : '' %> >
+                                                        <label> Rental Activities </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="vendor_rental_activities__view">
+                                                        <input class="check" type="checkbox" name="status[vendor_rental_activities__view]" value="1" <%= typeof data.vendor_rental_activities__view != 'undefined' && data.vendor_rental_activities__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="vendor_rental_activities__edit">
+                                                        <input type="checkbox" name="status[vendor_rental_activities__edit]" value="1" readonly <%= typeof data.vendor_rental_activities__edit != 'undefined' && data.vendor_rental_activities__edit == '1' ? 'checked' : '' %> >
+                                                        <label> Edit/Update </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6 class=" m-b-15 m-t-20">Manage Bookings</h6>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.activities_bookings__view != 'undefined' && data.activities_bookings__view == '1' ? 'checked' : '' %> >
+                                                        <label> Activities Bookings </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="activities_bookings__view">
+                                                        <input class="check" type="checkbox" name="status[activities_bookings__view]" value="1" <%= typeof data.activities_bookings__view != 'undefined' && data.activities_bookings__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.taxi_bookings__view != 'undefined' && data.taxi_bookings__view == '1' ? 'checked' : '' %> >
+                                                        <label> Taxi Bookings </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="taxi_bookings__view">
+                                                        <input class="check" type="checkbox" name="status[taxi_bookings__view]" value="1" <%= typeof data.taxi_bookings__view != 'undefined' && data.taxi_bookings__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6 class=" m-b-15 m-t-20">All Transactions</h6>
+                                    <div class="d-flex justify-content-start">
+                                        <div class="w-100">
+                                            <div class="checkbox checkbox-success form-check-inline">
+                                                <input class="pc-box" type="checkbox" <%= typeof data.all_transactions__view != 'undefined' && data.all_transactions__view == '1' ? 'checked' : '' %> >
+                                                <label> All Transactions </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="pl-4">
+                                            <div class="checkbox checkbox-primary form-check-inline">
+                                                <input type="hidden" name="slug[]" value="all_transactions__view">
+                                                <input class="check" type="checkbox" name="status[all_transactions__view]" value="1" <%= typeof data != 'undefined' && data.all_transactions__view == '1' ? 'checked' : '' %> >
+                                                <label> View </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6 class=" m-b-15 m-t-20">Manage Pages</h6>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.contact_us__view != 'undefined' && data.contact_us__view == '1' ? 'checked' : '' %> >
+                                                        <label> Contact Us </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="contact_us__view">
+                                                        <input class="check" type="checkbox" name="status[contact_us__view]" value="1" <%= typeof data.contact_us__view != 'undefined' && data.contact_us__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="contact_us__reply">
+                                                        <input type="checkbox" name="status[contact_us__reply]" value="1" readonly <%= typeof data.contact_us__reply != 'undefined' && data.contact_us__reply == '1' ? 'checked' : '' %> >
+                                                        <label> Reply </label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="contact_us__delete">
+                                                        <input type="checkbox" name="status[contact_us__delete]" value="1" readonly <%= typeof data.contact_us__delete != 'undefined' && data.contact_us__delete == '1' ? 'checked' : '' %> >
+                                                        <label> Delete </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.privacy_policy__view != 'undefined' && data.privacy_policy__view == '1' ? 'checked' : '' %> >
+                                                        <label> Privacy & Policy </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="privacy_policy__view">
+                                                        <input class="check" type="checkbox" name="status[privacy_policy__view]" value="1" <%= typeof data.privacy_policy__view != 'undefined' && data.privacy_policy__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="w-100">
+                                                    <div class="checkbox checkbox-success form-check-inline">
+                                                        <input class="pc-box" type="checkbox" <%= typeof data.term_conditions__view != 'undefined' && data.term_conditions__view == '1' ? 'checked' : '' %> >
+                                                        <label> Term & Conditions </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="pl-4">
+                                                    <div class="checkbox checkbox-primary form-check-inline">
+                                                        <input type="hidden" name="slug[]" value="term_conditions__view">
+                                                        <input class="check" type="checkbox" name="status[term_conditions__view]" value="1" <%= typeof data.term_conditions__view != 'undefined' && data.term_conditions__view == '1' ? 'checked' : '' %> >
+                                                        <label> View </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6 class=" m-b-15 m-t-20">Manage Taxi Rate List</h6>
+                                    <div class="d-flex justify-content-start">
+                                        <div class="w-100">
+                                            <div class="checkbox checkbox-success form-check-inline">
+                                                <input class="pc-box" type="checkbox" <%= typeof data.taxi_rate_list__view != 'undefined' && data.taxi_rate_list__view == '1' ? 'checked' : '' %> >
+                                                <label> Manage Taxi Rate List </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="pl-4">
+                                            <div class="checkbox checkbox-primary form-check-inline">
+                                                <input type="hidden" name="slug[]" value="taxi_rate_list__view">
+                                                <input class="check" type="checkbox" name="status[taxi_rate_list__view]" value="1" <%= typeof data.taxi_rate_list__view != 'undefined' && data.taxi_rate_list__view == '1' ? 'checked' : '' %> >
+                                                <label> View </label>
+                                            </div>
+                                            <div class="checkbox checkbox-primary form-check-inline">
+                                                <input type="hidden" name="slug[]" value="taxi_rate_list__edit">
+                                                <input type="checkbox" name="status[taxi_rate_list__edit]" value="1" readonly <%= typeof data.taxi_rate_list__edit != 'undefined' && data.taxi_rate_list__edit == '1' ? 'checked' : '' %> >
+                                                <label> Edit/Update </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6 class=" m-b-15 m-t-20">Manage Permissions</h6>
+                                    <div class="d-flex justify-content-start">
+                                        <div class="w-100">
+                                            <div class="checkbox checkbox-success form-check-inline">
+                                                <input class="pc-box" type="checkbox" <%= typeof data.permissions__view != 'undefined' && data.permissions__view == '1' ? 'checked' : '' %> >
+                                                <label> Manage Permissions </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="pl-4">
+                                            <div class="checkbox checkbox-primary form-check-inline">
+                                                <input type="hidden" name="slug[]" value="permissions__view">
+                                                <input class="check" type="checkbox" name="status[permissions__view]" value="1" <%= typeof data.permissions__view != 'undefined' && data.permissions__view == '1' ? 'checked' : '' %> >
+                                                <label> View </label>
+                                            </div>
+                                            <div class="checkbox checkbox-primary form-check-inline">
+                                                <input type="hidden" name="slug[]" value="permissions__edit">
+                                                <input type="checkbox" name="status[permissions__edit]" value="1" readonly <%= typeof data.permissions__edit != 'undefined' && data.permissions__edit == '1' ? 'checked' : '' %> >
+                                                <label> Edit/Update </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-custom waves-effect waves-light">Submit</button>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

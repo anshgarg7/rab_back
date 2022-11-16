@@ -1,0 +1,77 @@
+POST: http://localhost:3000/api/v1/vendor/booking/check_availability_vehicle
+header param: token
+body: {
+category_id:2
+company_id:3
+model_id:6
+from:'20-01-2021'
+to:'22-01-2021'
+}
+RESPONSE: 
+{
+    "success": true,
+    "data": {
+        "total_vehicle": 1,
+        "available_vehicle": 1,
+        "vehicle": {
+            "item_take": [
+                "shooes",
+                "glove"
+            ],
+            "services": [
+                "Tea"
+            ],
+            "images": [
+                "http://localhost:3000/image/vehicles/1644314944913_news.jpg,1644314944916_news.jpg"
+            ],
+            "id": 7,
+            "category_id": 2,
+            "company_id": 3,
+            "model_id": 6,
+            "user_id": 2,
+            "price": 12,
+            "quantity": 1,
+            "registration_no": null,
+            "createdAt": "2022-02-08T09:51:58.000Z",
+            "updatedAt": "2022-02-08T10:09:04.000Z",
+            "category": {
+                "category_name": "Car",
+                "image": "car.jpg"
+            },
+            "company": {
+                "name": "Daimler"
+            },
+            "yearNames": [
+                {
+                    "year": 2019,
+                    "registration_no": "HP3443"
+                },
+                {
+                    "year": 2020,
+                    "registration_no": "HP3442"
+                },
+                {
+                    "year": 2021,
+                    "registration_no": "HP34425"
+                }
+            ],
+            "model": {
+                "name": "Mercedes-Benz GLA"
+            },
+            "addOns": [
+                {
+                    "id": 33,
+                    "item": "glove",
+                    "price": 20
+                },
+                {
+                    "id": 34,
+                    "item": "shoes",
+                    "price": 30
+                }
+            ]
+        }
+    },
+    "error": false,
+    "message": "Successfully fetched the result"
+}

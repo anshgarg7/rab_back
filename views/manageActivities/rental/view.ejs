@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Activities</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Activities</a></li>
+                        <li class="breadcrumb-item active">View</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <div class="col-12 px-3 mb-3 d-flex justify-content-between align-items-center">
+                        <h4 class="m-t-0 header-title"><b>Rental Activity ( <%= data.title %> ) Brands</b></h4>
+                    </div>
+                    <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Brand</th>
+                                <th>Activity</th>
+                                <th>Status</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% data.brand_vehicle_types.forEach((value, key) => { %>
+
+                                <tr>
+                                    <td><%= value.brand.name %></td>
+                                    <td><%= value.activity.title %></td>
+                                    <td>
+                                        <input type="checkbox" class="sa-status" data-plugin="switchery" data-size="small" data-color="#1bb99a" data-id="<%= value.brand.id %>" value="<%= value.brand.status %>"  <%= (value.brand.status == '1') ? 'checked' : '' %> />
+                                        <form id="status-form-<%= value.brand.id %>" action="/admin/activities_rental/update_brand_status/<%= value.brand.id %>" method="post" style="display: none;" >
+                                            <input class="status-value-<%= value.brand.id %>" type="hidden" name="status" value="<%= value.brand.status %>">
+                                        </form>
+                                    </td>    
+                                    <td class="text-center">
+                                        <a href="/admin/activities_rental/<%= value.activity_id %>/brand/view/<%= value.brand.id %>" class="hidden on-editing save-row pr-2 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                    </td>
+                                </tr>
+                            
+                            <% }) %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

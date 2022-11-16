@@ -1,0 +1,262 @@
+GET:  http://localhost:3000/api/v1/vendor/vehicle/list?category_id=3
+in case loadmore functionality then pass 'id'
+header param: token
+
+Note: In case there is no category send first category result automatically.
+
+body:
+{
+    "success": true,
+    "data": [
+        {
+            "item_take": [
+                "shooes",
+                "glove"
+            ],
+            "services": [
+                "Tea"
+            ],
+            "h_images": [
+                "http://localhost:3000/image/vehicles/1644560097685_news.jpg"
+            ],
+            "id": 8,
+            "category_id": 2,
+            "company_id": 3,
+            "model_id": 2,
+            "user_id": 2,
+            "price": 12,
+            "quantity": 1,
+            "registration_no": null,
+            "createdAt": "2022-02-11T06:14:57.000Z",
+            "updatedAt": "2022-02-11T06:14:57.000Z",
+            "category": {
+                "category_name": "Car",
+                "image": "car.jpg"
+            },
+            "company": {
+                "name": "Daimler"
+            },
+            "yearNames": [
+                {
+                    "year": 2020,
+                    "registration_no": "HP3442"
+                },
+                {
+                    "year": 2021,
+                    "registration_no": "HP34425"
+                },
+                {
+                    "year": 2019,
+                    "registration_no": "HP3443"
+                }
+            ],
+            "model": {
+                "name": "Toyota Camry"
+            },
+            "addOns": [
+                {
+                    "id": 35,
+                    "item": "glove",
+                    "price": 20
+                },
+                {
+                    "id": 36,
+                    "item": "shoes",
+                    "price": 30
+                }
+            ],
+            "bookings": []
+        },
+        {
+            "item_take": [
+                "shooes",
+                "glove"
+            ],
+            "services": [
+                "Tea"
+            ],
+            "v_images": [
+                "http://localhost:3000/image/vehicles/1644560215760_image1.jpg"
+            ],
+            "h_images": [
+                "http://localhost:3000/image/vehicles/1644560215764_news.jpg"
+            ],
+            "id": 9,
+            "category_id": 2,
+            "company_id": 3,
+            "model_id": 3,
+            "user_id": 2,
+            "price": 12,
+            "quantity": 1,
+            "registration_no": null,
+            "createdAt": "2022-02-11T06:16:55.000Z",
+            "updatedAt": "2022-02-11T06:16:55.000Z",
+            "category": {
+                "category_name": "Car",
+                "image": "car.jpg"
+            },
+            "company": {
+                "name": "Daimler"
+            },
+            "yearNames": [
+                {
+                    "year": 2019,
+                    "registration_no": "HP3443"
+                },
+                {
+                    "year": 2020,
+                    "registration_no": "HP3442"
+                },
+                {
+                    "year": 2021,
+                    "registration_no": "HP34425"
+                }
+            ],
+            "model": {
+                "name": "Toyota Corolla"
+            },
+            "addOns": [
+                {
+                    "id": 37,
+                    "item": "glove",
+                    "price": 20
+                },
+                {
+                    "id": 38,
+                    "item": "shoes",
+                    "price": 30
+                }
+            ],
+            "bookings": []
+        },
+        {
+            "item_take": [
+                "shooes",
+                "glove"
+            ],
+            "services": [
+                "Tea"
+            ],
+            "v_images": [
+                "http://localhost:3000/image/vehicles/1644560578172_img2.jpg"
+            ],
+            "h_images": [
+                "http://localhost:3000/image/vehicles/1644560344030_news.jpg",
+                "http://localhost:3000/image/vehicles/1644314696609_news.jpg",
+                "http://localhost:3000/image/vehicles/1644560578171_news.jpg"
+            ],
+            "id": 7,
+            "category_id": 2,
+            "company_id": 3,
+            "model_id": 6,
+            "user_id": 2,
+            "price": 12,
+            "quantity": 1,
+            "registration_no": null,
+            "createdAt": "2022-02-08T09:51:58.000Z",
+            "updatedAt": "2022-02-11T06:22:58.000Z",
+            "category": {
+                "category_name": "Car",
+                "image": "car.jpg"
+            },
+            "company": {
+                "name": "Daimler"
+            },
+            "yearNames": [
+                {
+                    "year": 2019,
+                    "registration_no": "HP3443"
+                },
+                {
+                    "year": 2020,
+                    "registration_no": "HP3442"
+                },
+                {
+                    "year": 2021,
+                    "registration_no": "HP34425"
+                }
+            ],
+            "model": {
+                "name": "Mercedes-Benz GLA"
+            },
+            "addOns": [
+                {
+                    "id": 39,
+                    "item": "glove",
+                    "price": 20
+                },
+                {
+                    "id": 40,
+                    "item": "shoes",
+                    "price": 30
+                }
+            ],
+            "bookings": [
+                {
+                    "id": 17,
+                    "vehicle_id": "7",
+                    "user_id": 2,
+                    "quanity": 1,
+                    "from": "2022-02-09T00:00:00.000Z",
+                    "to": "2022-02-10T00:00:00.000Z",
+                    "coupon_id": 1,
+                    "discount_price": 20,
+                    "discount_coupon": 0,
+                    "amount": 400,
+                    "grand_total": 380,
+                    "status": "1",
+                    "createdAt": "2022-02-10T11:38:57.000Z",
+                    "updatedAt": "2022-02-10T17:04:28.000Z",
+                    "booking_addons": [
+                        {
+                            "id": 1,
+                            "addons_id": 33,
+                            "booking_id": 17,
+                            "quantity": 1,
+                            "name": "glove",
+                            "price": 20,
+                            "createdAt": "2022-02-10T11:38:57.000Z",
+                            "updatedAt": "2022-02-10T11:38:57.000Z"
+                        },
+                        {
+                            "id": 2,
+                            "addons_id": 34,
+                            "booking_id": 17,
+                            "quantity": 1,
+                            "name": "shoes",
+                            "price": 30,
+                            "createdAt": "2022-02-10T11:38:57.000Z",
+                            "updatedAt": "2022-02-10T11:38:57.000Z"
+                        }
+                    ],
+                    "booking_adventurers": [
+                        {
+                            "id": 1,
+                            "booking_id": 17,
+                            "first_name": "shidhart",
+                            "last_name": "kumar",
+                            "age": "12",
+                            "gender": "male",
+                            "createdAt": "2022-02-10T11:38:57.000Z",
+                            "updatedAt": "2022-02-10T11:38:57.000Z"
+                        }
+                    ],
+                    "booking_person": [
+                        {
+                            "id": 6,
+                            "booking_id": 17,
+                            "vehicle_id": 7,
+                            "user_id": 2,
+                            "mobile": 2147483647,
+                            "payment_status": "0",
+                            "createdAt": "2022-02-10T11:38:57.000Z",
+                            "updatedAt": "2022-02-10T11:38:57.000Z"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "error": false,
+    "message": "Successfully fetched vehicles data."
+}

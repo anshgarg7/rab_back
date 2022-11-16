@@ -1,0 +1,118 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Users</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Vendors</a></li>
+                        <li class="breadcrumb-item active">Index</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <div class="col-12 px-3 mb-3 d-flex justify-content-between align-items-center">
+                        <h4 class="m-t-0 header-title"><b>Vendors</b></h4>
+                        <a href="/admin/users/vendors/create"><button type="button"
+                                class="btn btn-custom waves-light waves-effect w-md">Add Vendor</button></a>
+                    </div>
+                    <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0"
+                        width="100%">
+                        <thead>
+                            <tr>
+                                <th>Business Name</th>
+                                <th>GST Number</th>
+                                <th>Category</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Is Approved</th>
+                                <th>Status</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            
+                            <% vendors.forEach((value, key) => { %>
+
+                                <tr>
+                                    <td><%= value.vendor_business_detail?.business_name || '' %></td>
+                                    <td><%= value.vendor_business_detail?.gst_no || '' %></td>
+                                    <td><%= value.vendor_business_detail.category_id == '1' ? 'Adventure' : 'Rental' %></td>
+                                    <td><%= value.first_name +' '+ value.last_name %></td>
+                                    <td><%= value.email %></td>
+                                    <td><%= value.country_code +' '+ value.mobile_no %></td>
+                                    <td>
+
+                                        <%if (value.is_approved == '1') { %>
+
+                                            Approved
+
+                                        <% } else{ %>
+
+                                            <input type="checkbox" class="sa-status" data-plugin="switchery" data-size="small" data-color="#1bb99a" data-id="<%= value.id %>" value="<%= value.is_approved %>"  <%= (value.is_approved == '1') ? 'checked' : '' %> />
+                                            <form id="status-form-<%= value.id %>" action="/admin/users/vendors/is_approved/<%= value.id %>" method="post" style="display: none;" >
+                                                <input class="status-value-<%= value.id %>" type="hidden" name="status" value="<%= value.status %>">
+                                            </form>
+                                            
+                                        <% } %>
+
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="sa-status" data-plugin="switchery" data-size="small" data-color="#1bb99a" data-id="<%= value.id %>" value="<%= value.status %>"  <%= (value.status == '1') ? 'checked' : '' %> />
+                                        <form id="status-form-<%= value.id %>" action="/admin/users/vendors/update_status/<%= value.id %>" method="post" style="display: none;" >
+                                            <input class="status-value-<%= value.id %>" type="hidden" name="status" value="<%= value.status %>">
+                                        </form>
+                                        <p style="display: none;" ><%= (value.status == '1') ? 'Active' : 'Inactive' %></p>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/admin/users/vendors/view/<%= value.id %>" class="hidden on-editing save-row pr-2 text-info" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="View"><i
+                                                class="fa fa-eye"></i></a>
+                                        <a href="javascript:void(0);" class="__addDiscount" data-id="<%= value.id %>" data-toggle="modal" data-target="#myModal2"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="Apply Discount"><i class="fa fa-plus-square-o"></i></span></a>
+
+                                        <a href="/admin/users/vendors/edit/<%= value.id %>" class="on-default edit-row pr-1 text-primary" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Edit"><i
+                                                class="fa fa-edit"></i></a>
+                                        <a href="javascript:void(0);" class="on-default remove-row text-danger sa-params" data-toggle="tooltip"
+                                            data-placement="top" data-id="<%= value.id %>" title="" data-original-title="Delete"><i
+                                            class="fa fa-trash-o"></i></a>
+                                        <form id="delete-form-<%= value.id %>" action="/admin/users/vendors/delete/<%= value.id %>" method="post" style="display: none;" ></form>    
+                                    </td>
+                                </tr>
+    
+                            <% }) %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal 2 -->
+<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-plus"></i> Add Discount</h6>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin/store_vendor_all_activities_discount" method="post" id="addDiscount">
+                    <div id="__cloneDiscountHtml">
+                        
+                    </div>
+                    <div class="form-group text-right m-b-0">
+                        <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

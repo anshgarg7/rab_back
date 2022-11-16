@@ -1,0 +1,72 @@
+<script>
+    $('#__cloneDiscountHtml').on('keydown', '.percentageValue', function(event) {
+        var $this = $(this);
+        if((event.which != 46 || $this.val().indexOf('.') != -1) &&
+        ((event.which < 48 || event.which > 57) &&
+        (event.which != 0 && event.which != 8))) {
+            event.preventDefault();
+        }
+        var text = $(this).val();
+        if((event.which == 46) && (text.indexOf('.') == -1)) {
+            setTimeout(function() {
+                if ($this.val().substring($this.val().indexOf('.')).length > 3) {
+                    $this.val($this.val().substring(0, $this.val().indexOf('.') + 3));
+                }
+            }, 1);
+        }
+        if((text.indexOf('.') != -1) &&
+            (text.substring(text.indexOf('.')).length > 2) &&
+            (event.which != 0 && event.which != 8) &&
+            ($(this)[0].selectionStart >= text.length - 2)) {
+                event.preventDefault();
+        }
+    })
+    $('#__cloneDiscountHtml').on('keydown', '.percentageValue', function(event) {
+        if($(this).val() > 100){
+            $(this).val('100.00');
+        }
+    });
+
+    $('.__addDiscount').on('click', function(e) {
+        var activityId = $(this).data('id');
+        $.ajax({
+            type:"GET",
+            url:"/admin/create_vendor_all_activities_discount/"+activityId,
+            success:function(response){
+                if(response.status){
+                    var html = '';
+                    html = html + `<div class="row align-items-center">
+                            <div class="col-md-4">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-9 col-sm-12 col-form-label text-md-right">`+(response?.adventure_activities ? 'All Adventure Activities' : response?.rental_activities ? 'All Rental Activities' : '')+`</label>
+                                    <div class="col-md-3 col-sm-12">
+                                        <input type="checkbox" name="is_vendor_discount" value="1" `+(response?.adventure_activities?.is_vendor_discount == '1' ? 'checked' : response?.rental_activities?.is_vendor_discount == '1' ? 'checked' : '')+` class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 pl-5">
+                                <div class="form-group">
+                                    <label>`+(response?.adventure_activities ? 'Add Adventure Activities Discount (%)' : response?.rental_activities ? 'Add Rental Activities Discount (%)' : '')+`</label>
+                                    <input type="text" name="discount" placeholder="`+(response?.adventure_activities ? 'Add Adventure Activities Discount (%)' : response?.rental_activities ? 'Add Rental Activities Discount (%)' : '')+`" value="`+(response?.adventure_activities?.discount || response?.rental_activities?.discount || '0.00')+`" class="form-control percentageValue" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" value="`+(response.adventure_activities?.user_id || response.rental_activities?.user_id)+`">
+                        <input type="hidden" name="category_id" value="`+(response?.category_id || response?.category_id)+`">`;
+                    $('#__cloneDiscountHtml').html(html);
+                    $('.loader').hide();
+                }
+            }
+        });
+    });
+
+    $('#addDiscount').on('submit', function(e) {
+        var formdata = new FormData(document.getElementById("addDiscount"));
+        $.ajax({
+            type:"POST",
+            data:formdata,
+            contentType: false,
+            processData: false,
+        });
+    });
+</script>

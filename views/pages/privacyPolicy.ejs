@@ -1,0 +1,39 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Pages</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item active"> privacy & Policy </li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <div class="col-12 px-3 mb-3 d-flex justify-content-between align-items-center">
+                        <h4 class="m-t-0 header-title"><b> privacy & Policy </b></h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <h4 class="m-b-30 m-t-0 header-title">Example</h4>
+                                <form action="/admin/privacy_policy/store" method="post" id="privacyPolicyForm">
+                                    <div class="form-group row">
+                                        <div class="col-12 mt-2">
+                                            <textarea id="elm1" name="description"><%=  data?.description %></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-custom waves-effect waves-light">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

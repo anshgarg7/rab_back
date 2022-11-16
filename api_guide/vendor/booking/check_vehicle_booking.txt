@@ -1,0 +1,41 @@
+POST:http://localhost:3000/api/v1/vendor/booking/check_vehicle_booking
+header param: token
+body: {
+from:2022-02-10
+to:2022-02-13
+vehicle_id:7
+}
+RESPONSE: 
+{
+    "success": true,
+    "data": [
+        {
+            "id": 17,
+            "vehicle_id": "7",
+            "user_id": 2,
+            "quanity": 1,
+            "from": "2022-02-09",
+            "to": "2022-02-10",
+            "coupon_id": 1,
+            "discount_price": 20,
+            "discount_coupon": 0,
+            "amount": 400,
+            "grand_total": 380,
+            "status": "1",
+            "createdAt": "2022-02-10T11:38:57.000Z",
+            "updatedAt": "2022-02-10T17:04:28.000Z",
+            "booking_user": {
+                "id": 6,
+                "booking_id": 17,
+                "vehicle_id": 7,
+                "user_id": 2,
+                "mobile": 2147483647,
+                "payment_status": "0",
+                "createdAt": "2022-02-10T11:38:57.000Z",
+                "updatedAt": "2022-02-10T11:38:57.000Z"
+            }
+        }
+    ],
+    "error": false,
+    "message": "Successfully fetched the result"
+}

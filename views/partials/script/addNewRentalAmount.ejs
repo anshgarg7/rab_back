@@ -1,0 +1,137 @@
+<script src="/js/jquery.validate.min.js"></script>
+<script>
+    $('#__cloneHtml').on('keydown', '.decimalNumber', function(event) {
+        var $this = $(this);
+        if((event.which != 46 || $this.val().indexOf('.') != -1) &&
+        ((event.which < 48 || event.which > 57) &&
+        (event.which != 0 && event.which != 8))) {
+            event.preventDefault();
+        }
+        var text = $(this).val();
+        if((event.which == 46) && (text.indexOf('.') == -1)) {
+            setTimeout(function() {
+                if ($this.val().substring($this.val().indexOf('.')).length > 3) {
+                    $this.val($this.val().substring(0, $this.val().indexOf('.') + 3));
+                }
+            }, 1);
+        }
+        if((text.indexOf('.') != -1) &&
+            (text.substring(text.indexOf('.')).length > 2) &&
+            (event.which != 0 && event.which != 8) &&
+            ($(this)[0].selectionStart >= text.length - 2)) {
+                event.preventDefault();
+        }   
+    });
+
+    $('#__cloneDiscountHtml').on('keydown', '.percentageValue', function(event) {
+        var $this = $(this);
+        if((event.which != 46 || $this.val().indexOf('.') != -1) &&
+        ((event.which < 48 || event.which > 57) &&
+        (event.which != 0 && event.which != 8))) {
+            event.preventDefault();
+        }
+        var text = $(this).val();
+        if((event.which == 46) && (text.indexOf('.') == -1)) {
+            setTimeout(function() {
+                if ($this.val().substring($this.val().indexOf('.')).length > 3) {
+                    $this.val($this.val().substring(0, $this.val().indexOf('.') + 3));
+                }
+            }, 1);
+        }
+        if((text.indexOf('.') != -1) &&
+            (text.substring(text.indexOf('.')).length > 2) &&
+            (event.which != 0 && event.which != 8) &&
+            ($(this)[0].selectionStart >= text.length - 2)) {
+                event.preventDefault();
+        }
+    })
+    $('#__cloneDiscountHtml').on('keydown', '.percentageValue', function(event) {
+        if($(this).val() > 100){
+            $(this).val('100.00');
+        }
+    });
+
+    $('.__activityAmount').on('click', function(e) {
+        var activityId = $(this).data('id');
+        $.ajax({
+            type:"GET",
+            url:"/admin/get_rental_activity_price_list/"+activityId,
+            success:function(response){
+                if(response.status){
+                    var html = '';
+                    $.each(response.data, function(i, v) { 
+                        html = html + `<div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Rate Type</label>
+                                <input type="text" class="form-control" value="`+(v.rate_type == '1' ? '/Hour' : '/day')+`" readonly>
+                                <input type="hidden" name="rate_type[]" value="`+v.rate_type+`">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Vendor Amount</label>
+                                <input type="text" class="form-control" value="`+v.vendor_amount+`" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Add New Amount<span class="text-danger">*</span></label>
+                                <input type="text" name="amount[]" placeholder="Add New Amount" class="form-control decimalNumber" autocomplete="off" required>
+                                <input type="hidden" name="id[]" value="`+v.id+`">
+                            </div>
+                        </div>
+                    </div>`;
+                    });
+                    $('#__cloneHtml').html(html);
+                    $('.loader').hide();
+                }
+            }
+        });
+    });
+
+    $('#addNewAmount').on('submit', function(e) {
+        var formdata = new FormData(document.getElementById("addNewAmount"));
+        $.ajax({
+            type:"POST",
+            data:formdata,
+            contentType: false,
+            processData: false,
+        });
+    });
+
+    $('.__addDiscount').on('click', function(e) {
+        var activityId = $(this).data('id');
+        $.ajax({
+            type:"GET",
+            url:"/admin/create_rental_activity_discount/"+activityId,
+            success:function(response){
+                if(response.status){
+                    var html = '';
+                    html = html + `<div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Add Discount (%)<span class="text-danger">*</span></label>
+                                <input type="text" name="discount" placeholder="Add Discount (%)" value="`+response.data.discount+`" class="form-control percentageValue" autocomplete="off">
+                                <input type="hidden" name="id" value="`+response.data.id+`">
+                            </div>
+                        </div>
+                    </div>`;
+                    $('#__cloneDiscountHtml').html(html);
+                    $('.loader').hide();
+                }
+            }
+        });
+    });
+
+    $('#addDiscount').on('submit', function(e) {
+        var formdata = new FormData(document.getElementById("addDiscount"));
+        $.ajax({
+            type:"POST",
+            data:formdata,
+            contentType: false,
+            processData: false,
+        });
+    });
+
+</script>

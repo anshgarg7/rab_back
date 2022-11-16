@@ -1,0 +1,21 @@
+POST: http://localhost:3000/api/v1/vendor/booking/add
+header param: token
+body: {"vehicle_id":7,
+"quanity":1,
+"from":"2022-02-09",
+"to":"2022-02-10",
+"amount":400,
+"grand_total":380,
+"addons":[{ "id":33,"name":"glove","price":20,"quantity":1},{ "id":34,"name":"shoes","price":30,"quantity":1}],
+"adventurers":[{ "first_name":"shidhart","last_name":"kumar","age":12,"gender":"male"}],
+"mobile":7973848810,
+"coupon_id":1,
+"discount_price":20,
+"discount_coupon":"first_002"
+}
+RESPONSE: 
+{
+    "success": true,
+    "error": false,
+    "message": "Booking successfully created!"
+}

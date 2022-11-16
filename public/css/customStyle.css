@@ -1,0 +1,204 @@
+.hide{
+    display: none;
+}
+#valid-msg{
+    color: green;
+}
+#error-msg{
+    color: red;
+}
+#aletrnate-valid-msg{
+    color: green;
+}
+#aletrnate-error-msg{
+    color: red;
+}
+.flag-container > .selected-flag {
+    height: 36px;
+}
+.videotop {
+    width: 100%;
+    height: 150px;
+}
+.videotop img {
+    width: 100%;
+    height: 100%;
+}
+.videoIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: #64c5b1;
+}
+
+input[type="checkbox"][readonly] {
+    pointer-events: none !important; 
+}
+
+.intelMobile .intl-tel-input {
+    position: relative;
+    display: block;
+}
+
+label.error {
+    color: #f96a74;
+}
+.select2 span:after label.error {
+    position: absolute;
+    color: #f96a74 !important;
+}
+input#phone span:after label.error {
+    position: absolute;
+    color: #f96a74 !important;
+}
+.dragDrop .error {
+    position: absolute;
+    top: 150px;
+    left: 0;
+}
+
+.dragDrop {
+    width: auto;
+}
+.select2 + label, .filestyle.error + label  {
+    position: absolute;
+    top: 65px;
+    display: block;
+}
+.select2 {
+    margin-bottom: 1.2rem;
+}
+
+.dragDrop .box {
+    position: relative;
+    background: #ffffff;
+    width: 100%;
+    height: 150px;
+}
+.dragDrop .box .box-body {
+    height: 148px;
+    width: 180px;
+    margin: auto;
+}
+.dragDrop .box .box-body img {
+    height: 100%;
+    width: 100%;
+}
+.dragDrop .box-header {
+    color: #444;
+    display: block;
+    padding: 10px;
+    position: relative;
+    border-bottom: 1px solid #f4f4f4;
+    margin-bottom: 10px;
+}
+.dragDrop .dropzone-wrapper {
+    border: 2px dashed #91b0b3;
+    color: #92b0b3;
+    position: relative;
+    height: 150px;
+    background: #ecf0f5;
+}
+.dragDrop .dropzone-wrapper .fa-cloud-upload {
+    font-size: 40px;
+}
+.dragDrop .dropzone-desc {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 40%;
+  top: 50px;
+  font-size: 16px;
+}
+.dragDrop .dropzone,
+.dragDrop .dropzone:focus {
+    position: absolute !important;
+    outline: none !important;
+    width: 100%;
+    height: 150px;
+    cursor: pointer;
+    opacity: 0;
+    clip: inherit !important;
+}
+.dropzone + div {
+    z-index: -1;
+}
+.dragDrop .dropzone-wrapper:hover,
+.dragDrop .dropzone-wrapper.dragover {
+    background: #ecf0f5;
+}
+.dragDrop .preview-zone {
+    text-align: center;
+}
+.dragDrop .preview-zone .dragDrop .box {
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.dragDrop .box .box-body p {
+    margin: 0;
+}
+
+.dragDrop .bootstrap-filestyle {
+    height: 100%;
+}
+.dragDrop .dropzone-wrapper span.group-span-filestyle {
+    width: 100%;
+}
+.dragDrop .dropzone-wrapper span.group-span-filestyle .btn-default {
+    width: 100%;
+    height: 100%;
+}
+.dragDrop .dropzone-wrapper span.group-span-filestyle .btn-default .buttonText {
+    position: relative;
+    z-index: -1;
+}
+
+.dragDrop .dropzone-wrapper span.group-span-filestyle .btn-default .badge {
+    position: relative;
+    z-index: -1;
+}
+
+.member-card .member-thumb img.img-thumbnail {
+    height: 120px;
+}
+ 
+.viewPic {
+    flex-basis: 35%;
+    height: 50px;
+    border: 1px solid #dfdbdb;
+    border-radius: 4px;
+}
+.viewPic img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    vertical-align: initial;
+}
+.viewPic + label {
+    font-size: 12px;
+    flex-basis: 65%;
+    padding-left: 5px;
+    margin: 0px;
+}
+
+
+.activityImg .activiBox {
+    width: 100%;
+    height: 170px;
+    border: 1px solid #ccc;
+}
+
+.activityImg .activiBox img {
+    width: 100%;
+    height: 100%;
+}
+
+.card-box table.invenrty th {
+    min-width: 92.5px;
+    padding: 12px 7.7px !important; 
+}

@@ -1,0 +1,109 @@
+GET: http://localhost:3000/api/v1/vendor/vehicle/categoryAllList
+headers - param: token
+Response:
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "category_name": "Scooty",
+            "image": "scooty.jpg",
+            "user_id": null,
+            "createdAt": "2022-02-08T05:44:54.000Z",
+            "updatedAt": "2022-02-08T05:44:54.000Z",
+            "companies": [
+                {
+                    "id": 1,
+                    "name": "Toyota",
+                    "category_id": 1,
+                    "createdAt": "2022-02-08T05:44:54.000Z",
+                    "updatedAt": "2022-02-08T05:44:54.000Z",
+                    "models": [
+                        {
+                            "id": 1,
+                            "company_id": 1,
+                            "name": "Toyota Avalon",
+                            "createdAt": "2022-02-08T05:44:54.000Z",
+                            "updatedAt": "2022-02-08T05:44:54.000Z"
+                        },
+                        {
+                            "id": 2,
+                            "company_id": 1,
+                            "name": "Toyota Camry",
+                            "createdAt": "2022-02-08T05:44:54.000Z",
+                            "updatedAt": "2022-02-08T05:44:54.000Z"
+                        },
+                        {
+                            "id": 3,
+                            "company_id": 1,
+                            "name": "Toyota Corolla",
+                            "createdAt": "2022-02-08T05:44:54.000Z",
+                            "updatedAt": "2022-02-08T05:44:54.000Z"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "category_name": "Car",
+            "image": "car.jpg",
+            "user_id": null,
+            "createdAt": "2022-02-08T05:44:54.000Z",
+            "updatedAt": "2022-02-08T05:44:54.000Z",
+            "companies": [
+                {
+                    "id": 2,
+                    "name": "Ford Motor",
+                    "category_id": 2,
+                    "createdAt": "2022-02-08T05:44:54.000Z",
+                    "updatedAt": "2022-02-08T05:44:54.000Z",
+                    "models": [
+                        {
+                            "id": 4,
+                            "company_id": 2,
+                            "name": "Ford Endeavour",
+                            "createdAt": "2022-02-08T05:44:54.000Z",
+                            "updatedAt": "2022-02-08T05:44:54.000Z"
+                        },
+                        {
+                            "id": 5,
+                            "company_id": 2,
+                            "name": "Ford Figo",
+                            "createdAt": "2022-02-08T05:44:54.000Z",
+                            "updatedAt": "2022-02-08T05:44:54.000Z"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "category_name": "Bike",
+            "image": "bike.jpg",
+            "user_id": null,
+            "createdAt": "2022-02-08T05:44:54.000Z",
+            "updatedAt": "2022-02-08T05:44:54.000Z",
+            "companies": [
+                {
+                    "id": 3,
+                    "name": "Daimler",
+                    "category_id": 3,
+                    "createdAt": "2022-02-08T05:44:54.000Z",
+                    "updatedAt": "2022-02-08T05:44:54.000Z",
+                    "models": [
+                        {
+                            "id": 6,
+                            "company_id": 3,
+                            "name": "Mercedes-Benz GLA",
+                            "createdAt": "2022-02-08T05:44:54.000Z",
+                            "updatedAt": "2022-02-08T05:44:54.000Z"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "error": false,
+    "message": "Successfully fetched data."
+}

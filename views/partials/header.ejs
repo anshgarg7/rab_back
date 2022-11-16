@@ -1,0 +1,39 @@
+<div class="topbar">
+    <div class="topbar-left">
+        <a href="/admin/dashboard" class="logo">
+            <span>
+                <img src="/assets/images/logo.png" alt="" height="28" width="60%">
+            </span>
+            <i>
+                <img src="/assets/images/logo_sm.png" alt="" height="28">
+            </i>
+        </a>
+    </div>
+    <nav class="navbar-custom">
+        <ul class="list-inline float-right mb-0">
+            <li class="list-inline-item dropdown notification-list">
+                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                   aria-haspopup="false" aria-expanded="false"><%- locals.sessionUser?.first_name %>!
+                    <img src="/assets/images/user.png" alt="user" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+                    <a href="/admin/profile" class="dropdown-item notify-item">
+                        <i class="mdi mdi-account-circle"></i> <span>Profile</span>
+                    </a>
+                    <form action="/admin/logout" method="post">
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="mdi mdi-power"></i> <span><input class="p-0" value="Logout" type="submit" style="background: none; border: none; cursor: pointer;"></span>
+                        </a>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <ul class="list-inline menu-left mb-0">
+            <li class="float-left">
+                <button class="button-menu-mobile open-left waves-light waves-effect">
+                    <i class="dripicons-menu"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>

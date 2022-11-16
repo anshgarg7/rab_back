@@ -1,0 +1,21 @@
+GET: http://localhost:3000/api/v1/vendor/booking/check_coupon/firstname_001
+Header param:token
+RESPONSE:
+
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "type": "Fixed Amount",
+        "name": "firstname_001",
+        "amount": 100,
+        "from": "2022-02-09T00:00:00.000Z",
+        "to": "2022-04-10T00:00:00.000Z",
+        "upTo_value": 200,
+        "status": "1",
+        "createdAt": "2022-02-09T12:21:58.000Z",
+        "updatedAt": "2022-02-09T12:21:58.000Z"
+    },
+    "error": false,
+    "message": "Successfully fetch the result."
+}

@@ -1,0 +1,50 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Users</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Admin</a></li>
+                        <li class="breadcrumb-item active">View</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center card-box">
+                    <div class="clearfix"></div>
+                    <div class="member-card">
+                        <div class="thumb-xl member-thumb m-b-10 mx-auto">
+                            <img src="<%= subAdmin.image %>" class="rounded-circle img-thumbnail" alt="profile-image">
+                            <i class="mdi mdi-star-circle member-star text-success" title="verified user"></i>
+                        </div>
+                        <div class="">
+                            <h4 class="m-b-5 font-18"><%= subAdmin?.first_name || '' %> <%= subAdmin?.last_name || '' %></h4>
+                            <p class="text-muted m-b-0"><span class="text-pink"> <%= subAdmin?.email || '' %> </span> </p>
+                            <p class="text-muted"> <%= subAdmin?.country_code +' '+ subAdmin?.mobile_no || '' %> </p>
+                        </div>
+                        <p class="text-muted font-13"> <%= subAdmin?.city || '' %>, <%= subAdmin?.state || '' %>, <%= subAdmin?.country || '' %> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-20">Details</h4>
+                    <div class="">
+                        <div class="">
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Gender:</span> <%= subAdmin?.gender || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Date of Birth:</span> <%= moment(subAdmin?.dob).format('DD-MM-YYYY') || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Address:</span> <span class="font-13 m-b-0"> <%= subAdmin?.address || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Pin Code:</span> <span class="font-13 m-b-0"> <%= subAdmin?.pin_code || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Landmark:</span> <span class="font-13 m-b-0"> <%= subAdmin?.landmark || '' %> </span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

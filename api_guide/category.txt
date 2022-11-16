@@ -1,0 +1,16 @@
+GET: http://localhost:3000/api/v1/category
+{
+    "success": true,
+    "data": [
+        {
+            "id": 2,
+            "title": "Adventure activity"
+        },
+        {
+            "id": 1,
+            "title": "Rental activity"
+        }
+    ],
+    "error": false,
+    "message": "Successfully fetched categories!"
+}

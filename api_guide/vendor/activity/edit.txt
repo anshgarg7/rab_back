@@ -1,0 +1,57 @@
+deletedImg_h[0]: new_1212.jpg
+PUT: http://localhost:3000/api/v1/vendor/activity/edit/6
+header param: token
+body param:
+category_id:2
+user_id:3
+title:'test'
+level:1
+price:20
+atitude_level:2
+atitude_height:10
+age_from:15
+age_to:50
+hightlight:'hello its just a test'
+pickup:1
+item_take[0]:shooes
+item_take[1]:glove
+services[0]:Tea
+items[0][name]:glove
+items[0][price]:20
+items[1][name]:shoes
+items[1][price]:30
+start[0]:'2022-02-13'
+end[0]:'2022-02-14'
+start[1]:'2022-02-13'
+end[1]:'2022-02-16'
+duration:'single'
+duration_date:'2022-02-13'
+duration_time:'10:30'
+capacity_day:10
+capacity_appointment:50
+itinerary:'its a dummy content'
+address:'vill nauru'
+address1:'post office bhangrotu'
+city:mandi
+state:'chandigarh'
+country:'india'
+pin:175021
+lat:0.12
+long:20.34
+part_activity:0
+other_review:1
+other_website[0]:'www.com'
+other_website[1]:'archibasket.com'
+h_images:
+v_images:
+
+deletedImg_h[0]: new_1212.jpg
+deletedImg_v[0]: new_121312.jpg
+response:
+
+{
+    "success": true,
+    "error": false,
+    "message": "Successfully updated activity!"
+}
+

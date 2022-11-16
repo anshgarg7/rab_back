@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Hotels</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Hotel</a></li>
+                        <li class="breadcrumb-item active">Create</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box">
+                    <h4 class="m-t-0 m-b-30 header-title">Add Hotel</h4>
+                    <form action="/admin/users/hotels/store" method="post" enctype="multipart/form-data" id="hotelForm">
+                       
+                        <%- include('form') %>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+

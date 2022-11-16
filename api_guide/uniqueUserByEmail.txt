@@ -1,0 +1,16 @@
+Post: http://localhost:3000/api/v1/user/getEmailNotExist
+body: {email:user@gmail.com}
+
+Error Response: 
+{
+    "success": false,
+    "error": true,
+    "message": "User already exists!"
+}
+
+Success Response:
+{
+    "success": true,
+    "error": false,
+    "message": "No user found!"
+}

@@ -1,0 +1,50 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">My Profile</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                        <li class="breadcrumb-item active">Profile</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center card-box">
+                    <div class="clearfix"></div>
+                    <div class="member-card">
+                        <div class="thumb-xl member-thumb m-b-10 mx-auto">
+                            <img src="/assets/images/user.png" class="rounded-circle img-thumbnail" alt="profile-image">
+                            <i class="mdi mdi-star-circle member-star text-success" title="verified authUser"></i>
+                        </div>
+                        <div class="">
+                            <h4 class="m-b-5 font-18"><%= authUser?.first_name || '' %> <%= authUser?.last_name || '' %></h4>
+                            <p class="text-muted m-b-0"><span class="text-pink"> <%= authUser?.email || '' %> </span> </p>
+                            <p class="text-muted"> <%= authUser?.mobile_no || '' %> </p>
+                        </div>
+                        <p class="text-muted font-13"> <%= authUser?.city || '' %>, <%= authUser?.state || '' %>, <%= authUser?.country || '' %> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-20">Details</h4>
+                    <div class="">
+                        <div class="">
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Gender:</span> <%= authUser?.gender || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Date of Birth:</span> <%= moment(authUser?.dob).format('DD-MM-YYYY') || '' %> </h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Address:</span> <span class="font-13 m-b-0"> <%= authUser?.address || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Pin Code:</span> <span class="font-13 m-b-0"> <%= authUser?.pin_code || '' %> </span></h5>
+                            <h5 class="text-custom m-b-5"><span class="text-muted">Landmark:</span> <span class="font-13 m-b-0"> <%= authUser?.landmark || '' %> </span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

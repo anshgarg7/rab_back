@@ -1,0 +1,122 @@
+<div class="left side-menu">
+    <div class="slimscroll-menu" id="remove-scroll">
+        <div id="sidebar-menu">
+            <ul class="metismenu" id="side-menu">
+                <li>
+                    <a href="/admin/dashboard">
+                        <i class="fi-air-play"></i> <span> Dashboard </span>
+                    </a>
+                </li>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.sub_admin__view == '1' || locals.sessionUser?.admin_permissions?.vendor__view == '1' || locals.sessionUser?.admin_permissions?.user__view == '1' || locals.sessionUser?.admin_permissions?.driver__view == '1' || locals.sessionUser?.admin_permissions?.hotel__view == '1') { %>
+                <li id="manageUsers">
+                    <a href="javascript:void(0);"><i class="fa fa-users"></i> <span> Manage Users </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.sub_admin__view == '1') { %>
+                        <li id="admin"><a href="/admin/users/sub_admin/index"><i class="fi-disc"></i> Sub Admin </a></li>
+                        <% } %>
+
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.vendor__view == '1') { %>
+                        <li><a href="/admin/users/vendors/index"><i class="fi-disc"></i> Vendors </a></li>
+                        <% } %>
+
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.user__view == '1') { %>
+                        <li><a href="/admin/users/users/index"><i class="fi-disc"></i> Users </a></li>
+                        <% } %>
+
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.driver__view == '1') { %>
+                        <li><a href="/admin/users/taxi_drivers/index"><i class="fi-disc"></i> Taxi Drivers </a></li>
+                        <% } %>
+
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.hotel__view == '1') { %>
+                        <li><a href="/admin/users/hotels/index"><i class="fi-disc"></i> Hotels </a></li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.categories__view == '1') { %>
+                <li><a href="/admin/categories/index"><i class="fi-briefcase"></i> Manage Categories </a></li>
+                <% } %>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.adventure_activities__view == '1' || locals.sessionUser?.admin_permissions?.rental_activities__view == '1') { %>
+                <li>
+                    <a href="javascript:void(0);"><i class="fi-marquee-plus"></i> <span> Manage Activities </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.adventure_activities__view == '1') { %>
+                        <li><a href="/admin/activities_adventure/index"> <i class="fi-disc"></i> Adventure </a></li>
+                        <% } %>
+
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.rental_activities__view == '1') { %>
+                        <li><a href="/admin/activities_rental/index"> <i class="fi-disc"></i> Rental </a></li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.vendor_adventure_activities__view == '1' || locals.sessionUser?.admin_permissions?.vendor_rental_activities__view == '1') { %>
+                <li>
+                    <a href="javascript:void(0);"><i class="fi-help"></i> <span> Vendor Activities </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.vendor_adventure_activities__view == '1') { %>
+                        <li><a href="/admin/vendor_adventure_activities/index"><i class="fi-disc"></i> Adventure </a></li>
+                        <% } %>
+
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.vendor_rental_activities__view == '1') { %>
+                        <li><a href="/admin/vendor_rental_activities/index"><i class="fi-disc"></i> Rental </a></li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.activities_bookings__view == '1' || locals.sessionUser?.admin_permissions?.taxi_bookings__view == '1') { %>
+                <li>
+                    <a href="javascript:void(0);"><i class="fi-briefcase"></i> <span> Manage Bookings </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.activities_bookings__view == '1') { %>
+                        <li><a href="/admin/bookings/index"><i class="fi-disc"></i> Activities Bookings </a></li>
+                        <% } %>
+                        
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.taxi_bookings__view == '1') { %>
+                        <li><a href="/admin/taxi_bookings/index"><i class="fi-disc"></i> Taxi Bookings </a></li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.all_transactions__view == '1') { %>
+                <li><a href="/admin/all_transactions"><i class="fi-briefcase"></i> All Transactions </a></li>
+                <% } %>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.contact_us__view == '1' || locals.sessionUser?.admin_permissions?.privacy_policy__view == '1' || locals.sessionUser?.admin_permissions?.term_conditions__view == '1') { %>
+                <li>
+                    <a href="javascript:void(0);"><i class="fi-paper-stack"></i><span> Manage Pages </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.contact_us__view == '1') { %>
+                        <li><a href="/admin/contact_us"><i class="fi-disc"></i> Contact Us </a></li>
+                        <% } %>
+
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.privacy_policy__view == '1') { %>
+                        <li><a href="/admin/privacy_policy"><i class="fi-disc"></i> privacy & Policy </a></li>
+                        <% } %>
+                        
+                        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.term_conditions__view == '1') { %>
+                        <li><a href="/admin/term_conditions"><i class="fi-disc"></i> Term & Conditions </a></li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.taxi_rate_list__view == '1') { %>
+                <li><a href="/admin/taxi_rate_list/index"><i class="fi-briefcase"></i> Manage Taxi Rate List </a></li>
+                <% } %>
+
+                <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.permissions__view == '1') { %>
+                    <li><a href="/admin/permissions/index"><i class="fi-layers"></i> Manage Permissions </a></li>
+                <% } %>
+
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

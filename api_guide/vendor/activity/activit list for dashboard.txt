@@ -1,0 +1,95 @@
+GET:  http://localhost:3000/api/v1/vendor/activity/list?category_id=3
+in case loadmore functionality then pass 'id'
+header param: token
+
+Note: In case there is no category send first category result automatically.
+
+body:
+{
+    "success": true,
+    "data": [
+        {
+            "item_take": [
+                "shooes",
+                "glove"
+            ],
+            "services": [
+                "Tea"
+            ],
+            "id": 6,
+            "category_id": 2,
+            "user_id": 2,
+            "title": "'test'",
+            "price": 20,
+            "level": "1",
+            "atitude_level": "2",
+            "atitude_height": "10",
+            "age_from": 15,
+            "age_to": 50,
+            "hightlight": "'hello its just a test'",
+            "pickup": "1",
+            "status": "0",
+            "createdAt": "2022-02-23T07:40:11.000Z",
+            "updatedAt": "2022-02-23T07:40:11.000Z",
+            "category": {
+                "id": 2,
+                "title": "Adventure activity",
+                "parent": null,
+                "createdAt": "2022-02-08T05:44:53.000Z",
+                "updatedAt": "2022-02-08T05:44:53.000Z"
+            },
+            "dates": [
+                {
+                    "start": "2022-02-13",
+                    "end": "2022-02-14"
+                },
+                {
+                    "start": "2022-02-13",
+                    "end": "2022-02-16"
+                }
+            ],
+            "otherDetails": {
+                "other_website": [
+                    "'www.com'",
+                    "'archibasket.com'"
+                ],
+                "id": 6,
+                "activity_id": 6,
+                "user_id": 2,
+                "duration": "",
+                "duration_date": "2022-02-13",
+                "duration_time": "00:00:00",
+                "capacity_day": 10,
+                "capacity_appointment": 50,
+                "itinerary": "'its a dummy content'",
+                "address": "'vill nauru'",
+                "address1": "'post office bhangrotu'",
+                "city": "mandi",
+                "state": "'chandigarh'",
+                "country": "'india'",
+                "pin": "175021",
+                "lat": "0.12",
+                "long": "20.34",
+                "other_review": "1",
+                "part_activity": "0",
+                "createdAt": "2022-02-23T07:40:11.000Z",
+                "updatedAt": "2022-02-23T07:40:11.000Z"
+            },
+            "addOns": [
+                {
+                    "id": 1,
+                    "item": "glove",
+                    "price": 20
+                },
+                {
+                    "id": 2,
+                    "item": "shoes",
+                    "price": 30
+                }
+            ],
+            "comments": []
+        }
+    ],
+    "error": false,
+    "message": "Successfully fetched Activity data."
+}

@@ -1,0 +1,483 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#brand").trigger('change');      
+
+        if($('#phone').length){
+            var input = document.querySelector("#phone"),
+                errorMsg = document.querySelector("#error-msg"),
+                validMsg = document.querySelector("#valid-msg");
+            var thisForm = $('#phone').closest('form').attr('id');
+            phone(input, errorMsg, validMsg, thisForm, '.phone-selector');
+        }
+
+        if($('#aletrnatePhone').length){
+            var input = document.querySelector("#aletrnatePhone"),
+                errorMsg = document.querySelector("#aletrnate-error-msg"),
+                validMsg = document.querySelector("#aletrnate-valid-msg");
+            var thisForm = $('#aletrnatePhone').closest('form').attr('id');
+            phone(input, errorMsg, validMsg, thisForm, '.aletrnate-phone-selector');
+        }
+
+        if($('#phone').val() || $('#aletrnatePhone').val()){
+            if($('#phone, #aletrnatePhone').length){
+                var countryCode = $('.selected-dial-code').html();
+                $('.selected-country-code').val(countryCode);
+                var classTest = $('.iti-flag').attr('class');
+                var res = classTest.replace('iti-flag', '');
+                $('.selected-country-iso').val(res.replace(/^\s+|\s+$/gm,''));
+                setTimeout(function(){ 
+                    $('#phone').val($('#phone').val().replace(/ /g,''));
+                    $('#aletrnatePhone').val($('#aletrnatePhone').val().replace(/ /g,''));
+                },500);
+            }
+        }
+
+        function phone(input, errorMsg, validMsg, thisForm, selector){
+            /* Error messages based on the code returned from getValidationError */
+            var errorMap = [ "Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+            /* Initialise plugin */
+            var countryCode = "in";
+            var intl = window.intlTelInput(input, {
+                initialCountry: countryCode,
+                separateDialCode: true,
+                geoIpLookup: function(success, failure) {
+                    $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                        var countryCode = (resp && resp.country) ? resp.country : "";
+                        success(countryCode);
+                    });
+                },
+                autoPlaceholder: false,
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/14.0.6/js/utils.js"
+            });
+            var reset = function() {
+                input.classList.remove("error");
+                errorMsg.innerHTML = "";
+                errorMsg.classList.add("hide");
+                validMsg.classList.add("hide");
+                var classTest =  $('#'+thisForm).find(selector).find('.iti-flag').attr('class');
+                var res = classTest.replace('iti-flag', '');
+                var countryCode = $('#'+thisForm).find(selector).find('.selected-dial-code').html();
+                $(selector).find('.selected-country-code').val(countryCode);
+                $(selector).find('.selected-country-iso').val(res.replace(/^\s+|\s+$/gm,''));
+            };
+            /* Validate on blur event */
+            input.addEventListener('blur', function() {
+                reset();
+                if(input.value.trim()){
+                    if(intl.isValidNumber()){
+                        validMsg.classList.remove("hide");
+                    } else{
+                        input.classList.add("error");
+                        var errorCode = intl.getValidationError();
+                        errorMsg.innerHTML = errorMap[errorCode];
+                        errorMsg.classList.remove("hide");
+                    }
+                }
+            });
+            /* Reset on keyup/change event */
+            input.addEventListener('change', reset);
+            input.addEventListener('keyup', reset);
+        }
+    });
+</script>
+
+<!-- places maps.googleapis -->
+<script id="placeApi"></script>
+
+<script>
+    if($('#pac-input').length){
+        var el = document.querySelector('#placeApi');
+        el.src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk_8w619G2LteJdDgBARkj0sNR4jMFhPc&libraries=places&v=weekly&channel=2";
+        el.onload = (() => {
+            initMap();
+        })
+        
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"));
+            const input = document.getElementById("pac-input");
+            const autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.setComponentRestrictions({
+                country: ["in"],
+            });
+            var selected = false;
+
+            autocomplete.addListener("place_changed", () => {
+                selected = true;
+                const place = autocomplete.getPlace();
+                if (!place.geometry || !place.geometry.location) {
+                    window.alert("Google Maps can't find: '" + place.name + "'");
+                    return;
+                } else{
+                    $('#latitudeLocation').val(place.geometry.location.lat());
+                    $('#longitudeLocation').val(place.geometry.location.lng());
+                    $('#exactLocationName').val(place.name);
+                    $('#locationImage').val(place.photos?.length ? place.photos[0].getUrl() : 'https://media-cdn.tripadvisor.com/media/photo-s/12/82/4f/a0/amazing-view-of-our-camp.jpg');
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+    $('#pac-input').on('focus', function(){
+        selected = false;
+    }).on('blur', function(){
+        if(!selected){
+            $(this).val('');
+            $('#latitudeLocation').val('');
+            $('#longitudeLocation').val('');
+        }
+    });
+
+    $(document).on('keypress', function(e) {
+        if(e.which == 13) {
+            e.preventDefault()
+        }
+    })
+</script>
+
+<!-- Image Upload With Preview -->
+<script>
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var htmlPreview =
+                    '<img width="200" src="' + e.target.result + '" />' +
+                    '<p>' + input.files[0].name + '</p>';
+                var wrapperZone = $(input).parent();
+                var previewZone = $(input).parent().parent().find('.preview-zone');
+                var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+
+                wrapperZone.removeClass('dragover');
+                previewZone.removeClass('hidden');
+                boxZone.empty();
+                boxZone.append(htmlPreview);
+                $('.remove-preview').show();
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function reset(e) {
+        e.wrap('<form>').closest('form').get(0).reset();
+        e.unwrap();
+    }
+
+    $(".dropzone").change(function() {
+        readFile(this);
+    });
+
+    $('.dropzone-wrapper').on('dragover', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).addClass('dragover');
+    });
+
+    $('.dropzone-wrapper').on('dragleave', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).removeClass('dragover');
+    });
+
+    $('.remove-preview').on('click', function() {
+        var boxZone = $(this).parents('.preview-zone').find('.box-body');
+        var previewZone = $(this).parents('.preview-zone');
+        var dropzone = $(this).parents('.form-group').find('.dropzone');
+        boxZone.empty();
+        previewZone.addClass('hidden');
+        reset(dropzone);
+        $('.remove-preview').hide();
+    });
+</script>
+
+<!-- Country-State-City -->
+<script>
+    if ($("#countryId").length > 0) {
+        function ajaxCall() {
+            this.send = function(data, url, method, success, type) {
+                type = type||'json';
+                var successRes = function(data) {
+                    success(data);
+                }
+                var errorRes = function(e) {
+                    console.log(e);
+                }
+                jQuery.ajax({
+                    url: url,
+                    type: method,
+                    data: data,
+                    success: successRes,
+                    error: errorRes,
+                    dataType: type,
+                    timeout: 60000
+                });
+            }
+        }
+    
+        function locationInfo() {
+            var rootUrl = "https://geodata.solutions/api/api.php";
+            //now check for set values
+            var addParams = '';
+            if(jQuery("#gds_appid").length > 0) {
+                addParams += '&appid=' + jQuery("#gds_appid").val();
+            }
+            if(jQuery("#gds_hash").length > 0) {
+                addParams += '&hash=' + jQuery("#gds_hash").val();
+            }
+            var call = new ajaxCall();
+            this.confCity = function(id) {
+                var url = rootUrl+'?type=confCity&countryId='+ jQuery('#countryId option:selected').attr('countryid') +'&stateId=' + jQuery('#stateId option:selected').attr('stateid') + '&cityId=' + id;
+                var method = "post";
+                var data = {};
+                call.send(data, url, method, function(data) {
+                });
+            };
+    
+            this.getCities = function(id) {
+                jQuery(".cities option:gt(0)").remove();
+                var stateClasses = jQuery('#cityId').attr('class');
+                var cC = stateClasses.split(" ");
+                cC.shift();
+                var addClasses = '';
+                if(cC.length > 0){
+                    acC = cC.join();
+                    addClasses = '&addClasses=' + encodeURIComponent(acC);
+                }
+                var url = rootUrl+'?type=getCities&countryId='+ jQuery('#countryId option:selected').attr('countryid') +'&stateId=' + id + addParams + addClasses;
+                var method = "post";
+                var data = {};
+                jQuery('.cities').find("option:eq(0)").html("Please wait..");
+                call.send(data, url, method, function(data) {
+                    jQuery('.cities').find("option:eq(0)").html("Select City");
+                    if(data.tp == 1){
+                        var listlen = Object.keys(data['result']).length;
+                        if(listlen > 0)
+                        {
+                            jQuery.each(data['result'], function(key, val) {
+    
+                                var option = jQuery('<option />');
+                                option.attr('value', val).text(val);
+                                jQuery('.cities').append(option);
+                            });
+                        } else{
+                            var usestate = jQuery('#stateId option:selected').val();
+                            var option = jQuery('<option />');
+                            option.attr('value', usestate).text(usestate);
+                            option.attr('selected', 'selected');
+                            jQuery('.cities').append(option);
+                        }
+                        if(jQuery("#cityId").data('value')){
+                            jQuery('#cityId').val(jQuery("#cityId").data('value'));
+                        }
+                        jQuery(".cities").prop("disabled",false);
+                    } else{
+                        alert(data.msg);
+                    }
+                });
+            };
+    
+            this.getStates = function(id) {
+                jQuery(".states option:gt(0)").remove();
+                jQuery(".cities option:gt(0)").remove();
+                //get additional fields
+                var stateClasses = jQuery('#stateId').attr('class');
+                var cC = stateClasses.split(" ");
+                cC.shift();
+                var addClasses = '';
+                if(cC.length > 0){
+                    acC = cC.join();
+                    addClasses = '&addClasses=' + encodeURIComponent(acC);
+                }
+                var url = rootUrl+'?type=getStates&countryId=' + id + addParams  + addClasses;
+                var method = "post";
+                var data = {};
+                jQuery('.states').find("option:eq(0)").html("Please wait..");
+                call.send(data, url, method, function(data) {
+                    jQuery('.states').find("option:eq(0)").html("Select State");
+                    if(data.tp == 1){
+                        jQuery.each(data['result'], function(key, val) {
+                            var option = jQuery('<option />');
+                            option.attr('value', val).text(val);
+                            option.attr('stateid', key);
+                            jQuery('.states').append(option);
+                        });
+                        if(jQuery("#stateId").data('value')){
+                            jQuery('#stateId').val(jQuery("#stateId").data('value')).trigger('change');
+                        }
+                        jQuery(".states").prop("disabled",false);
+                    } else{
+                        alert(data.msg);
+                    }
+                });
+            };
+    
+            this.getCountries = function() {
+                //get additional fields
+                var countryClasses = jQuery('#countryId').attr('class');
+                var cC = countryClasses.split(" ");
+                cC.shift();
+                var addClasses = '';
+                if(cC.length > 0){
+                    acC = cC.join();
+                    addClasses = '&addClasses=' + encodeURIComponent(acC);
+                }
+                var presel = false;
+                var iip = 'N';
+                jQuery.each(cC, function( index, value ) {
+                    if (value.match("^presel-")) {
+                        presel = value.substring(7);
+                    }
+                    if(value.match("^presel-byi")){
+                        var iip = 'Y';
+                    }
+                });
+    
+                var url = rootUrl+'?type=getCountries' + addParams + addClasses;
+                var method = "post";
+                var data = {};
+                jQuery('.countries').find("option:eq(0)").html("Please wait..");
+                call.send(data, url, method, function(data) {
+                    jQuery('.countries').find("option:eq(0)").html("Select Country");
+                    if(data.tp == 1){
+                        if(presel == 'byip'){
+                            presel = data['presel'];
+                        }
+                        if(jQuery.inArray("group-continents",cC) > -1){
+                            var $select = jQuery('.countries');
+                            jQuery.each(data['result'], function(i, optgroups) {
+                                var $optgroup = jQuery("<optgroup>", {label: i});
+                                if(optgroups.length > 0){
+                                    $optgroup.appendTo($select);
+                                }
+                                jQuery.each(optgroups, function(groupName, options) {
+                                    var coption = jQuery('<option />');
+                                    coption.attr('value', options.name).text(options.name);
+                                    coption.attr('countryid', options.id);
+                                    if(presel) {
+                                        if (presel.toUpperCase() == options.id) {
+                                            coption.attr('selected', 'selected');
+                                        }
+                                    }
+                                    coption.appendTo($optgroup);
+                                });
+                            });
+                        } else{
+                            jQuery.each(data['result'], function(key, val) {
+                                var option = jQuery('<option />');
+                                option.attr('value', val).text(val);
+                                option.attr('countryid', key);
+                                if(presel){
+                                    if(presel.toUpperCase() ==  key){
+                                        option.attr('selected', 'selected');
+                                    }
+                                }
+                                jQuery('.countries').append(option);
+                            });
+                        }
+                        if(presel){
+                            jQuery('.countries').trigger('change');
+                        }
+                        if(jQuery("#countryId").data('value')){
+                            jQuery('#countryId').val(jQuery("#countryId").data('value')).trigger('change');
+                        }
+                        jQuery(".countries").prop("disabled",false);
+                    } else{
+                        alert(data.msg);
+                    }
+                });
+            };
+        }
+    
+        jQuery(function() {
+            var loc = new locationInfo();
+            loc.getCountries();
+            jQuery(".countries").on("change", function(ev) {
+                var countryId = jQuery("option:selected", this).attr('countryid');
+                if(countryId != ''){
+                    loc.getStates(countryId);
+                } else{
+                    jQuery(".states option:gt(0)").remove();
+                }
+            });
+            jQuery(".states").on("change", function(ev) {
+                var stateId = jQuery("option:selected", this).attr('stateid');
+                if(stateId != ''){
+                    loc.getCities(stateId);
+                } else{
+                    jQuery(".cities option:gt(0)").remove();
+                }
+            });
+            jQuery(".cities").on("change", function(ev) {
+                var cityId = jQuery("option:selected", this).val();
+                if(cityId != ''){
+                    loc.confCity(cityId);
+                }
+            });
+        });
+    }
+</script>
+
+<script>
+    if ($("#datepicker-autoclose").length > 0) {
+        $('#datepicker-autoclose').datepicker({
+            format: 'dd-mm-yyyy',
+            todayHighlight: 'TRUE',
+            endDate: new Date(),
+            autoclose: true,
+        });
+    }
+    
+    if ($("#datepicker-autoclose1").length > 0) {
+        $('#datepicker-autoclose1').datepicker({
+            format: 'dd-mm-yyyy',
+            todayHighlight: 'TRUE',
+            startDate: new Date(),
+            autoclose: true,
+        });
+    }
+    
+    if ($("#brand").length > 0) {
+        $('#brand').change(function(){
+            var brandId = $(this).val();  
+            var modelId = jQuery('#model').data('value');
+            if(brandId != ""){
+                $.ajax({
+                    type:"GET",
+                    url:"/admin/get_model_list/"+brandId,
+                    success:function(res){  
+                        var data = JSON.parse(JSON.stringify(res).toString());
+                        if(data){
+                            $("#model").empty();
+                            $("#model").append('<option value="">Select</option>');
+                            $.each(data, function(key, value){
+                                $("#model").append(`<option value="${value.id}" ${value.id === modelId ? 'selected' : ''}>${value.name}</option>`);
+                            });
+                        } else{
+                            $("#model").empty();
+                        }
+                    }
+                });
+            } else{
+                $("#model").empty();
+            }   
+        });
+    }
+    
+    $(function() {
+        $('.select2').on('change', function() {
+            $(this).click()
+        }); 
+    
+        $('[type=tel]').on('input', function () { 
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    });
+
+    $('.integerNumber').keypress(function(event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+</script>

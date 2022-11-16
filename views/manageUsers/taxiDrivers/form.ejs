@@ -1,0 +1,204 @@
+<div class="form-group row">
+    <div class="col-6">
+        <label>First Name</label>
+        <input type="text" name="first_name" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.first_name : '' %>" class="form-control" placeholder="First Name" autocomplete="off">
+    </div>
+    <div class="col-6">
+        <label>Last Name</label>
+        <input type="text" name="last_name" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.last_name : '' %>" class="form-control" placeholder="Last Name" autocomplete="off">
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-4">
+        <label>Email</label>
+        <input type="email" name="email" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.email : '' %>" class="form-control" parsley-trigger="change" placeholder="Email" autocomplete="off">
+    </div>
+
+    <%if (typeof taxiDriver == 'undefined') { %>
+
+    <div class="col-4">
+        <label>Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" autocomplete="off">
+    </div>
+    <div class="col-4">
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" autocomplete="off">
+    </div>
+
+    <% } %>
+
+</div>
+<div class="form-group row">
+    <div class="col-4 phone-selector intelMobile">
+        <label>Mobile</label>
+        <input id="phone" type="tel" name="mobile_no" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.country_code : '' %><%= typeof taxiDriver != 'undefined' ? taxiDriver.mobile_no : '' %>" class="form-control" placeholder="Mobile" autocomplete="off">
+        <span id="valid-msg" class="hide">✓ Valid</span>
+        <span id="error-msg" class="hide"></span>
+        <input type="hidden" name="country_code" value="" class="selected-country-code"/>
+        <input type="hidden" name="country_iso" value="" class="selected-country-iso"/>
+    </div>
+    <div class="col-4">
+        <label>Gender</label>
+        <select name="gender" class="form-control" autocomplete="off">
+            <option value="">Select</option>
+            <option value="Male" <%= typeof taxiDriver != 'undefined' && taxiDriver.gender == 'Male' ? 'selected' : '' %>>Male</option>
+            <option value="Female" <%= typeof taxiDriver != 'undefined' && taxiDriver.gender == 'Female' ? 'selected' : '' %>>Female</option>
+            <option value="Other" <%= typeof taxiDriver != 'undefined' && taxiDriver.gender == 'Female' ? 'Other' : '' %>>Other</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <label>Date of Birth</label>
+        <input type="text" name="dob" onkeydown="'return', false" value="<%= typeof taxiDriver != 'undefined' ? moment(taxiDriver.dob).format( 'DD-MM-YYYY') : '' %>" class="form-control" onkeydown="return false;" placeholder="DD-MM-YYYY" id="datepicker-autoclose" autocomplete="off">
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-4">
+        <label>Country</label>
+        <select name="country" data-value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.country : '' %>" class="countries form-control select2" id="countryId" autocomplete="off">
+            <option value="">Select</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <label>State</label>
+        <select name="state" data-value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.state : '' %>" class="states form-control select2" id="stateId" autocomplete="off">
+            <option value="">Select</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <label>City</label>
+        <select name="city" data-value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.city : '' %>" class="cities form-control select2" id="cityId" autocomplete="off">
+            <option value="">Select</option>
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-9">
+        <label>Address</label>
+        <input type="text" name="address" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.address : '' %>" class="form-control" placeholder="Address" autocomplete="off">
+    </div>
+    <div class="col-3">
+        <label>Pin Code</label>
+        <input type="text" name="pin_code" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.pin_code : '' %>" class="form-control"  placeholder="Pin Code" autocomplete="off">
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-12">
+        <label>Landmark</label>
+        <input type="text" name="landmark" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.landmark : '' %>" class="form-control"  placeholder="Landmark" autocomplete="off">
+    </div>
+</div>
+<div class="form-group row dragDrop">
+    <div class="col-12">
+        <label>Image <small><b>Note: </b><i>Only .png, .jpg, .jpeg, .gif format are accepted.</i></small></label>
+        <div class="row m-0">
+            <div class="dropzone-wrapper col-8">
+                <div class="dropzone-desc">
+                <i class="fa fa-cloud-upload"></i>
+                <p>Choose an image file or drag it here.</p>
+                </div>
+                <input type="file" name="image" accept="image/png,image/gif,image/jpeg" class="dropzone" autocomplete="off">
+            </div>
+            <div class="preview-zone hidden col-4">
+                <div class="box box-solid">
+                    <div class="position-absolute" style="right: 0;">
+                        <button style="display: none;" type="button" class="btn btn-danger btn-xs remove-preview">
+                            <i class="fa fa-times"></i> Remove
+                        </button>
+                    </div>
+                    <div class="box-body">
+
+                        <%if (typeof taxiDriver != 'undefined') { %>
+
+                        <img width="200" id="imageData" src="<%= taxiDriver.image %>">
+
+                        <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-12 mt-2">
+        <label>Status</label>
+        <input type="checkbox" name="status" value="1" data-plugin="switchery" data-color="#1bb99a" <%= typeof taxiDriver != 'undefined' && taxiDriver.status == '1' ? 'checked' : typeof taxiDriver == 'undefined' ? 'checked' : '' %>>
+    </div>
+</div>
+<h4 class="m-t-0 m-b-30 header-title">Add Taxi Driver Business Details</h4>
+<div class="form-group row">
+    <div class="col-4">
+        <label>Brand</label>
+        <select id="brand" name="brand_id" class="form-control select2" autocomplete="off">
+            <option value="">Select</option>
+
+            <% brands.forEach((value, key) => { %>
+
+                <option value="<%= value.id %>" <%= typeof taxiDriver != 'undefined' && taxiDriver.taxi_driver_business_detail.brand_id == value.id ? 'selected' : '' %>><%= value.name %></option>
+
+            <% }); %>
+
+        </select>
+    </div>
+    <div class="col-4">
+        <label>Model</label>
+        <select id="model" name="model_id" data-value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.taxi_driver_business_detail.model_id : '' %>" class="form-control select2" autocomplete="off">
+            <option value="">Select</option>
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-4">
+        <label>Registration Number</label>
+        <input type="text" name="registration_no" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.taxi_driver_business_detail.registration_no : '' %>" class="form-control" placeholder="Enter Registration Number" autocomplete="off">
+    </div>
+    <div class="col-6">
+        <label>Location</label>
+        <input id="pac-input" type="text" name="location" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.taxi_driver_business_detail.location : '' %>" class="form-control" placeholder="Location" autocomplete="off">
+        <input id="latitudeLocation" type="hidden" name="latitude" value="">
+        <input id="longitudeLocation" type="hidden" name="longitude" value="">
+        <div id="map"></div>
+    </div>
+    <div class="col-2">
+        <label>Driving Area Radius (KM)</label>
+        <input type="text" name="driving_area_radius" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.taxi_driver_business_detail.driving_area_radius : '' %>" class="form-control integerNumber" placeholder="Driving Area Radius" autocomplete="off">
+    </div>
+</div>
+<div class="justify-content-end row">
+    <div class="col-4">
+        <label><small><b>Note: </b><i>Only .png, .jpg, .jpeg, .gif format are accepted.</i></small></label>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-4">
+        <label>License Number</label>
+        <input type="text" name="license_no" value="<%= typeof taxiDriver != 'undefined' ? taxiDriver.taxi_driver_business_detail.license_no : '' %>" class="form-control" placeholder="Enter License Number" autocomplete="off">
+    </div>
+    <div class="col-4">
+        <label>License Expiry Date</label>
+        <input type="text" name="license_expiry_date" value="<%= typeof taxiDriver != 'undefined' ? moment(taxiDriver.taxi_driver_business_detail.license_expiry_date).format( 'DD-MM-YYYY') : '' %>" onkeydown="'return', false" class="form-control" placeholder="DD-MM-YYYY" id="datepicker-autoclose1" autocomplete="off">
+    </div>
+    <div class="col-2">
+        <label>License Front Image</label>
+        <input type="file" name="license_fornt_image" accept="image/png,image/gif,image/jpeg" class="filestyle" data-input="false" data-buttonname="btn-secondary" autocomplete="off">
+
+        <%if (typeof taxiDriver != 'undefined' && typeof taxiDriver.taxi_driver_business_detail.license_fornt_image != 'undefined') { %>
+
+            <img id="licenseForntImage" class="mt-3" width="110" height="60" src="<%= taxiDriver.taxi_driver_business_detail.license_fornt_image %>">
+
+        <% } %>
+
+    </div>    
+    <div class="col-2">
+        <label>License Back Image</label>
+        <input type="file" name="license_back_image" accept="image/png,image/gif,image/jpeg" class="filestyle" data-input="false" data-buttonname="btn-secondary" autocomplete="off">
+
+        <%if (typeof taxiDriver != 'undefined' && typeof taxiDriver.taxi_driver_business_detail.license_back_image != 'undefined') { %>
+
+            <img id="licenseBackImage" class="mt-3" width="110" height="60" src="<%= taxiDriver.taxi_driver_business_detail.license_back_image %>">
+
+        <% } %>
+
+    </div>   
+</div>
+<button type="submit" class="btn btn-custom waves-effect waves-light">Submit</button>

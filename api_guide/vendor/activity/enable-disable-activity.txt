@@ -1,0 +1,13 @@
+PUT: http://localhost:3000/api/v1/vendor/activity/change_status/6
+Header param: token
+body:
+status:'active'
+
+you can also choose 'deactive'
+
+response:
+{
+    "success": true,
+    "error": false,
+    "message": "Successfully changed the activity status."
+}

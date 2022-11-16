@@ -1,0 +1,21 @@
+POST: http://localhost:3000/api/v1/vendor/vehicle/comment
+Header param: token
+body:
+vehicle_id:7
+user_id:2
+message:Its a great
+
+response:
+{
+    "success": true,
+    "data": {
+        "id": 2,
+        "vehicle_id": "7",
+        "user_id": "2",
+        "message": "Its a great",
+        "updatedAt": "2022-02-11T12:30:13.151Z",
+        "createdAt": "2022-02-11T12:30:13.151Z"
+    },
+    "error": false,
+    "message": "Successfully inserted comments."
+}

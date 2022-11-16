@@ -1,0 +1,9 @@
+DELETE: http://localhost:3000/api/v1/vendor/vehicle/delete/1
+headers param: token
+response:
+{
+    "success": true,
+    "data": 1,
+    "error": false,
+    "message": "Successfully deleted vehicle data."
+}

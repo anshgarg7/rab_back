@@ -1,0 +1,21 @@
+POST: http://localhost:3000/api/v1/vendor/activity/comment
+Header param: token
+body:
+activity_id:7
+user_id:2
+message:Its a great
+
+response:
+{
+    "success": true,
+    "data": {
+        "id": 3,
+        "activity_id": "7",
+        "user_id": "2",
+        "message": "Its a great",
+        "updatedAt": "2022-02-23T08:11:05.741Z",
+        "createdAt": "2022-02-23T08:11:05.741Z"
+    },
+    "error": false,
+    "message": "Successfully inserted comments."
+}

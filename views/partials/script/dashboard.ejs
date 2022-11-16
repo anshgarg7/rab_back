@@ -1,0 +1,50 @@
+<!-- moment -->
+<script src="/assets/plugins/moment/moment.js"></script>
+<!-- Counter js  -->
+<script src="/assets/plugins/waypoints/jquery.waypoints.min.js"></script>
+<script src="/assets/plugins/counterup/jquery.counterup.min.js"></script>
+<script>
+    var visitorDeviceType = JSON.parse('<%- JSON.stringify(visitorDeviceType) %>');
+
+    var uniqueVisitorCount = JSON.parse('<%- JSON.stringify(uniqueVisitorCount) %>');
+    
+    var bookingsStatusCount = JSON.parse('<%- JSON.stringify(bookingsStatusCount) %>');
+
+    var taxiBookingsStatusCount = JSON.parse('<%- JSON.stringify(taxiBookingsStatusCount) %>');
+
+    var rentalActivitiesCount = '<%- rentalActivitiesCount %>';
+    var activeRentalActivitiesCount = '<%- activeRentalActivitiesCount %>';
+    var closeRentalActivitiesCount = '<%- closeRentalActivitiesCount %>';
+    var approvedRentalActivitiesCount = '<%- approvedRentalActivitiesCount %>';
+    var unapprovedRentalActivitiesCount = '<%- unapprovedRentalActivitiesCount %>';
+
+    var adventureActivitiesCount = '<%- adventureActivitiesCount %>';
+    var activeAdventureActivitiesCount = '<%- activeAdventureActivitiesCount %>';
+    var closeAdventureActivitiesCount = '<%- closeAdventureActivitiesCount %>';
+    var approvedAdventureActivitiesCount = '<%- approvedAdventureActivitiesCount %>';
+    var unapprovedAdventureActivitiesCount = '<%- unapprovedAdventureActivitiesCount %>';
+
+    var taxiDriversCount = '<%- taxiDriversCount %>';
+    var activeTaxiDriversCount = '<%- activeTaxiDriversCount %>';
+    var closeTaxiDriversCount = '<%- closeTaxiDriversCount %>';
+    var approvedTaxiDriversCount = '<%- approvedTaxiDriversCount %>';
+    var unapprovedTaxiDriversCount = '<%- unapprovedTaxiDriversCount %>';
+
+    var finalPayment = '<%- finalPayment %>'.split(',').map(v => parseFloat(v));
+    var finalRefund = '<%- finalRefund %>'.split(',').map(v => parseFloat(v));
+</script>
+<!--C3 Chart-->
+<script type="text/javascript" src="/assets/plugins/d3/d3.min.js"></script>
+<script type="text/javascript" src="/assets/plugins/c3/c3.min.js"></script>
+<!--Echart Chart-->
+<script src="/assets/plugins/echart/echarts-all.js"></script>
+<!-- Dashboard init -->
+<script src="/assets/pages/jquery.dashboard.js"></script>
+<!-- Google Charts js -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- Init -->
+<script type="text/javascript" src="/assets/pages/jquery.google-charts.init.js"></script>
+<!--Morris Chart-->
+<script src="/assets/plugins/morris/morris.min.js"></script>
+<script src="/assets/plugins/raphael/raphael-min.js"></script>
+<script src="/assets/pages/jquery.morris.init.js"></script>

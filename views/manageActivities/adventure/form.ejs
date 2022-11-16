@@ -1,0 +1,49 @@
+<div class="form-group row">
+    <div class="col-6">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" value="<%= typeof data != 'undefined' ? data.title : '' %>" placeholder="Title" autocomplete="off">
+    </div>
+    <div class="col-6">
+        <label>Category</label>
+        <select name="category_id" class="form-control select2" autocomplete="off">
+            <option value="">Select</option>
+
+            <% categories.forEach((value, key) => { %>
+
+                <option value="<%= value.id %>" <%= typeof data != 'undefined' && data.category_id == value.id ? 'selected' : '' %> ><%= value.title %></option>
+
+            <% }); %>
+
+        </select>
+    </div>
+    <div class="col-4">
+        <label>Beginner Level Points</label>
+        <input type="text" class="form-control integerNumber" name="beginner_level_point" value="<%= typeof data != 'undefined' ? data.beginner_level_point : '' %>" placeholder="Beginner Level Points" autocomplete="off">
+    </div>
+    <div class="col-4">
+        <label>Intermediate Level Points</label>
+        <input type="text" class="form-control integerNumber" name="intermediate_level_point" value="<%= typeof data != 'undefined' ? data.intermediate_level_point : '' %>" placeholder="Intermediate Level Points" autocomplete="off">
+    </div>
+    <div class="col-4">
+        <label>Expert Level Points</label>
+        <input type="text" class="form-control integerNumber" name="expert_level_point" value="<%= typeof data != 'undefined' ? data.expert_level_point : '' %>" placeholder="Expert Level Points" autocomplete="off">
+    </div>
+    <div class="col-6 mt-3">
+        <label>Image<small><b>Note: </b><i>Only .png, .jpg, .jpeg, .gif format are accepted.</i></small></label>
+        <input type="file" name="image" accept="image/png,image/gif,image/jpeg" class="filestyle" data-input="false" data-buttonname="btn-secondary">
+
+        <%if (typeof data != 'undefined' && typeof data.image != 'undefined') { %>
+
+            <img id="imageData" class="mt-3" width="150" height="120" src="<%= data.image %>">
+
+        <% } %>
+
+    </div>
+</div>                       
+<div class="form-group row">
+    <div class="col-12">
+        <label for="exampleInputStatus">Status</label>
+        <input type="checkbox" name="status" value="1" data-plugin="switchery" data-color="#1bb99a" <%= typeof data != 'undefined' && data.status == '1' ? 'checked' : typeof data == 'undefined' ? 'checked' : '' %>>
+    </div>
+</div>
+<button type="submit" class="btn btn-custom waves-effect waves-light">Submit</button>

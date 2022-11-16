@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <script src="/js/validate.js"></script>
+  <style>
+     .container {
+    width: 305px;
+    border: 1px solid beige;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 50px;
+    margin: 0 auto;
+   }
+   .error{
+       color:red;
+   }
+  </style>
+    </head>
+<body>
+    <div class="container">
+        <% if ( error && error.length > 0 ) { %>
+            <p class="error errMsg"><%= error %> </p>
+          <% } %>
+
+        <form id="reset_from" method="POST">
+            <h4 class="mb-3 mt-3">Reset Password</h4>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword" class="form-label">Confirm-Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword" name="confirm_password">
+                <input type="hidden" class="form-control"  name="token" value="{{token}}">
+
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+</div>
+
+
+    <script>
+   jQuery(document).ready(function ($) {
+
+$('#reset_from').validate({ // initialize the plugin
+    rules: {
+      
+        password: {
+            required: true
+        },
+        confirm_password: {
+          equalTo: "#exampleInputPassword1"
+        }
+    },
+    messages: {
+      
+        password: {
+            required: 'Password is required.'
+        },
+        confirm_password: {
+            equalTo: 'Password do not match.'
+        }
+        }
+    });
+    $('.errMsg').delay(10000).fadeOut('slow');
+
+  });
+    </script>
+    </body>
+    </html>

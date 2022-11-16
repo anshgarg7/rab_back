@@ -1,0 +1,19 @@
+POST: http://localhost:3000/api/v1/vendor/login
+body: email, password
+Response: 
+{
+    "success": true,
+    "error": false,
+    "data": {
+        "id": 2,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbW9AZ21haWwuY29tIiwiaWF0IjoxNjQ0MjMzMTE5fQ.zswXvmD8PFG-fWbsIHXBy9JDLtNqOPe802I2b3uE62c",
+        "email": "demo@gmail.com",
+        "first_name": "Denise",
+        "role_id": 3,
+        "photo": "http://localhost:3001//image/profile/1643969679130_news.jpg",
+        "mobile_no": null,
+        "lat": null,
+        "long": null
+    },
+    "message": "Login successfully!"
+}

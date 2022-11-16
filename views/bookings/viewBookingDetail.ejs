@@ -1,0 +1,432 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Booking Detail</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Booking Detail</a></li>
+                        <li class="breadcrumb-item active">View Booking Detail</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-box">
+
+                    <%if (data?.activity_share_type === '1') { %>
+
+                        <h4 class="header-title m-t-0">Adventure Activity (<%= data?.adventure_activity?.activity?.title || '' %>) Booking Detail</h4>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="text-center card-box">
+                                    <div class="clearfix"></div>
+                                    <div class="member-card">
+                                        <div class="thumb-xl member-thumb m-b-10 mx-auto">
+                                            <img src="<%= data?.user?.image %>" class="rounded-circle img-thumbnail" alt="profile-image">
+                                        </div>
+                                        <div class="">
+                                            <h4 class="m-b-5 font-18"><%= data?.user?.first_name || '' %> <%= data?.user?.last_name || '' %></h4>
+                                            <p class="text-muted m-b-0"><span class="text-pink"> <%= data?.user?.email || '' %> </span> </p>
+                                            <p class="text-muted"> <%= data?.user?.country_code +' '+ data?.user?.mobile_no || '' %> </p>
+                                        </div>
+                                        <p class="text-muted font-13"> <%= data?.user?.city || '' %>, <%= data?.user?.state || '' %>, <%= data?.user?.country || '' %> </p>
+                                        <b>USER</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <h5 class="text-custom m-b-5"> <%= data?.adventure_activity?.title || '' %> </h5>
+                                <span class="label label-primary"><%= data?.adventure_activity?.activity_adventure_type?.name || '' %></span>
+                                <p class="text-warning"><i class="fa fa-map-marker"></i>
+                                    <%= data?.adventure_activity?.user?.vendor_business_detail?.location || '' %>
+                                </p>
+                                <h4 class="header-title m-t-0">Quantity: <span class="label label-success"><%= data?.quantity || '' %></span></h4>
+                                <h4 class="header-title m-t-0">Total Price: <span class="font-13"><%= data.total_price %> (INR)</span></h4>
+                                <h4 class="header-title m-t-0">Start Date & Time: <span class="font-13"><%= data.start_date +' '+ data.start_time %></span></h4>
+                                <h4 class="header-title m-t-0">End Date & Time: <span class="font-13"><%= data.end_date +' '+ data.end_time %></span></h4>
+                                <h4 class="header-title m-t-0">Status: <span class="font-13"><%= data.status == '1' ? 'pending' : data.status == '2' ? 'in-progress' : data.status == '3' ? 'abandoned' : data.status == '4' ? 'completed' : 'cancelled' %></span></h4>
+                                <h4 class="header-title m-t-0">Level Points: <span class="font-13"><%= data.status == '4' ? data.level_points : 0 %></span></h4>
+                                <h4 class="header-title m-t-0">Created At: <span class="font-13"><%= data?.createdAt %></span></h4>
+                                <h4 class="header-title m-t-4">Bookings Addons</h4>
+
+                                <%if (data?.booking_add_ons?.length) { %>
+                                    <% data?.booking_add_ons.forEach((v, k) => { %>
+                                        
+                                        <p class="text-muted m-b-20 font-13"><%= k + 1 %>. <%= v?.activity_add_on?.item_name || '' %> <span class="label label-danger"><%= v?.activity_add_on?.item_price || '' %> (INR)</span> <span class="label label-primary">Quantity: <%= v?.quantity || '' %></span></p>
+                                        
+                                    <% }) %>
+                                <% } else{ %>
+                                    <span class="font-13">N/A</span>
+                                <% } %>
+
+                                <h4 class="header-title m-t-4">Is Pickup: <span class="font-13"><%= (data?.is_pickup == '1') ? 'Yes' : 'No' %></span></h4>
+                                <%if (data?.is_pickup == '1') { %>
+                                    <h4 class="header-title m-t-4">Meeting Point</h4>
+                                    <p class="font-13 m-b-0"><b class="">Is Extra Charges: </b><%= (data?.adventure_activity?.activity_meeting_point?.is_extra_charges == '1') ? 'Yes' : 'No' %></p>
+                                    <p class="font-13 m-b-0"><b class="">Address Line One: </b><%= data?.adventure_activity?.activity_meeting_point?.address_line_one || 'N/A' %></p>
+                                    <p class="font-13 m-b-0"><b class="">Address Line Two: </b><%= data?.adventure_activity?.activity_meeting_point?.address_line_two || 'N/A' %></p>
+                                    <p class="font-13 m-b-0"><b class="">Landmark: </b><%= data?.adventure_activity?.activity_meeting_point?.landmark || 'N/A' %></p>
+                                    <p class="font-13 m-b-0"><b class="">Country: </b><%= data?.adventure_activity?.activity_meeting_point?.country %> <b class="">State: </b><%= data?.adventure_activity?.activity_meeting_point?.state %> <b class="">City: </b><%= data?.adventure_activity?.activity_meeting_point?.city %> <b class="">Pin Code: </b><%= data?.adventure_activity?.activity_meeting_point?.pin_code %></p>
+                                    <p class="font-13 m-b-0"><b class="">location: </b><%= data?.adventure_activity?.activity_meeting_point?.location %></p>
+                                <% } %>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="col-lg-12 mt-4">
+                            <h5 class="text-custom m-b-5"> Activity BOOKING PAYMENT & TRANSACTIONS</h5>
+                            
+                            <%if (data?.booking_payment?.transactions?.length) { %>
+                                <h4 class="header-title m-t-0">Total Price: <span class="font-13"><%= data?.booking_payment?.total_price %> (<%= data?.booking_payment?.currency %>)</span></h4>
+                                <% data.booking_payment.transactions.forEach((v, k) => { %>
+                                    <div class="card-box">
+                                        <h4 class="header-title m-t-0">Transaction Payment Ref: <span class="font-13"><%= v.transaction_payment_ref %></span></h4>
+                                        <h4 class="header-title m-t-0">Transaction Refund Ref: <span class="font-13"><%= v.transaction_refund_ref || 'Null' %></span></h4>
+                                        <h4 class="header-title m-t-0">Entity: <span class="font-13"><%= v.entity %></span></h4>
+                                        <h4 class="header-title m-t-0">Amount: <span class="font-13"><%= v.amount %> (<%= v.currency %>)</span></h4>
+                                        <h4 class="header-title m-t-0">Method: <span class="font-13"><%= v.method %></span></h4>
+                                        <h4 class="header-title m-t-0">Status: <span class="font-13"><%= v.status %></span></h4>
+                                        <h4 class="header-title m-t-0">Created At: <span class="font-13"><%= data?.createdAt %></span></h4>
+                                    </div>
+                                <% }) %>
+                            <% } else{ %>
+                                <span class="col-sm-3 font-13">N/A</span>
+                            <% } %>
+    
+                        </div>
+
+                        <div class="col-lg-12 mt-4">
+                            <h5 class="text-custom m-b-5"> Activity BOOKING RATING & REVIEW </h5>
+                            <%if (data?.rating_review) { %>
+                            <div class="card-box ribbon-box">
+                                <div class="ribbon ribbon-primary"><%= data?.rating_review?.rating || '' %>&#11088;</div>
+                                <p class="m-b-0"><%= data?.rating_review?.review || '' %></p>
+                            </div>
+                            <% } else{ %>
+                                <span class="col-sm-3 font-13">N/A</span>
+                            <% } %>  
+                        </div>
+
+                        <h2 class="header-title m-t-4">Activity Detail</h2>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="text-center card-box">
+                                    <div class="clearfix"></div>
+                                    <div class="member-card">
+                                        <div class="thumb-xl member-thumb m-b-10 mx-auto">
+                                            <img src="<%= data?.adventure_activity?.user?.image %>" class="rounded-circle img-thumbnail" alt="profile-image">
+                                        </div>
+                                        <div class="">
+                                            <h4 class="m-b-5 font-18"><%= data?.adventure_activity?.user?.first_name || '' %> <%= data?.adventure_activity?.user?.last_name || '' %></h4>
+                                            <p class="text-muted m-b-0"><span class="text-pink"> <%= data?.adventure_activity?.user?.email || '' %> </span> </p>
+                                            <p class="text-muted"> <%= data?.adventure_activity?.user?.country_code +' '+ data?.adventure_activity?.user?.mobile_no || '' %> </p>
+                                        </div>
+                                        <p class="text-muted font-13"> <%= data?.adventure_activity?.user?.city || '' %>, <%= data?.adventure_activity?.user?.state || '' %>, <%= data?.adventure_activity?.user?.country || '' %> </p>
+                                        <b>VENDOR</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <h4 class="header-title m-t-4">Price (INR)</h4>
+                                <span class="label label-danger"><%= data?.adventure_activity?.activity_prices.find(v => v.rate_type == '3').amount || '' %>/Person</span>
+                                <h4 class="header-title m-t-4">Quantity <span class="label label-success"><%= data?.adventure_activity?.quantity || '' %></span></h4>
+                                <h4 class="header-title m-t-4">List Date</h4>
+                                <%if (data?.adventure_activity?.activity_adventure_list_dates?.length) { %>
+                                    <% data?.adventure_activity?.activity_adventure_list_dates.forEach((v, k) => { %>
+                                        
+                                        <span class="label label-primary"> <%= v?.start_date +' - '+ v?.end_date || '' %> </span>
+                                    
+                                        <% }) %>
+                                <% } else{ %>
+                                    <span class="col-sm-3 font-13">N/A</span>
+                                <% } %>
+                                <h4 class="header-title m-t-4">What to take</h4>
+
+                                <%if (data?.adventure_activity?.activity_require_accessories?.filter(v => v.accessories_medium == '1')?.length) { %>
+
+                                    <% data?.adventure_activity?.activity_require_accessories?.filter(v => v.accessories_medium == '1').forEach((v, k) => { %>
+                                        
+                                        <span class="label label-primary"><%= v?.name || '' %></span>
+
+                                    <% }) %>
+                                <% } else{ %>
+                                    <span class="col-sm-3 font-13">N/A</span>
+                                <% } %>
+
+                                <h4 class="header-title m-t-4">Things & service included</h4>
+
+                                <%if (data?.adventure_activity?.activity_require_accessories?.filter(v => v.accessories_medium == '2')?.length) { %>
+                                
+                                    <% data?.adventure_activity?.activity_require_accessories?.filter(v => v.accessories_medium == '2').forEach((v, k) => { %>
+                                        
+                                        <span class="label label-primary"><%= v?.name || '' %></span>
+
+                                    <% }) %>
+                                <% } else{ %>
+                                    <span class="col-sm-3 font-13">N/A</span>
+                                <% } %>
+
+                                <h4 class="header-title m-t-4">Addons</h4>
+
+                                <%if (data?.adventure_activity?.activity_add_ons?.length) { %>
+                                    <% data?.adventure_activity?.activity_add_ons.forEach((v, k) => { %>
+                                        
+                                        <p class="text-muted m-b-20 font-13"><%= k + 1 %>. <%= v?.item_name || '' %> <span class="label label-danger"><%= v?.item_price || '' %> (INR)</span> <span class="label label-primary">Quantity: <%= v?.quantity || '' %></span></p>
+                                        
+                                    <% }) %>
+                                <% } else{ %>
+                                    <span class="col-sm-3 font-13">N/A</span>
+                                <% } %>
+
+                            </div>
+                        </div>
+                        <h4 class="m-t-4 header-title m-b-0">Activity Video</h4>
+                        <div class="row">
+
+                            <%if (typeof data?.adventure_activity?.activity_media.find(v => v.media_type == '2')?.media_path != 'undefined') { %>
+
+                            <div class="col-sm-3 positon-relative videotop">
+                                <a class="popup-vimeo" href="<%= data?.adventure_activity?.activity_media.find(v => v.media_type == '2').media_path %>">
+                                    <img src="/assets/images/bg-countdown.jpg" alt="img" class="img-fluid positon-absolute">
+                                    <span class="videoIcon"> <i class="mdi mdi-play-circle-outline"></i></span>
+                                </a>    
+                            </div>
+
+                            <% } else{ %>
+                                <span class="col-sm-3 font-13">N/A</span>
+                            <% } %>
+                            
+                        </div>
+                        <h4 class="m-t-4 header-title m-b-4">Activity Images</h4>
+                        <div class="row activityImg">
+
+                            <% data?.adventure_activity?.activity_media.filter(v => v.media_type == '1').forEach((v, k) => { %>
+
+                                <div class="col-sm-3">
+                                    <div class="activiBox">
+                                        <img src="<%= v?.media_path %>" alt="img" class="img-fluid"/>
+                                    </div>
+                                </div>
+        
+                            <% }) %>
+
+                        </div>
+                        <div class="col-lg-12 mt-4">
+                            <div class="card-box ribbon-box">
+                                <div class="ribbon ribbon-primary">Description</div>
+                                <p class="m-b-0"><%= data?.adventure_activity?.description || '' %></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mt-4">
+                            <div class="card-box ribbon-box">
+                                <div class="ribbon ribbon-warning">Warning</div>
+                                <p class="m-b-0"><%= data?.adventure_activity?.warning || '' %></p>
+                            </div>
+                        </div>
+
+                    <% } else if (data?.activity_share_type === '2') { %>
+
+                        <h4 class="header-title m-t-0">Rental Activity (<%= data?.rental_activity?.activity?.title || '' %>) Booking Detail</h4>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="text-center card-box">
+                                    <div class="clearfix"></div>
+                                    <div class="member-card">
+                                        <div class="thumb-xl member-thumb m-b-10 mx-auto">
+                                            <img src="<%= data?.user?.image %>" class="rounded-circle img-thumbnail" alt="profile-image">
+                                        </div>
+                                        <div class="">
+                                            <h4 class="m-b-5 font-18"><%= data?.user?.first_name || '' %> <%= data?.user?.last_name || '' %></h4>
+                                            <p class="text-muted m-b-0"><span class="text-pink"> <%= data?.user?.email || '' %> </span> </p>
+                                            <p class="text-muted"> <%= data?.user?.country_code +' '+ data?.user?.mobile_no || '' %> </p>
+                                        </div>
+                                        <p class="text-muted font-13"> <%= data?.user?.city || '' %>, <%= data?.user?.state || '' %>, <%= data?.user?.country || '' %> </p>
+                                        <b>USER</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <h5 class="text-custom m-b-5"> <%= data?.rental_activity?.title || '' %> </h5>
+                                <span class="label label-primary"><%= data?.rental_activity?.brand?.name || '' %></span>
+                                <span class="label label-default"><%= data?.rental_activity?.model?.name || '' %></span>
+                                <span class="label label-info"><%= data?.rental_activity?.model?.type || '' %></span>
+                                <p class="text-warning"><i class="fa fa-map-marker"></i>
+                                    <%= data?.rental_activity?.user?.vendor_business_detail?.location || '' %>
+                                </p>
+                                <h4 class="header-title m-t-0">Quantity: <span class="label label-success"><%= data?.quantity || '' %></span></h4>
+                                <h4 class="header-title m-t-0">Total Price: <span class="font-13"><%= data.total_price %> (INR)</span></h4>
+                                <h4 class="header-title m-t-0">Start Date & Time: <span class="font-13"><%= data.start_date +' '+ data.start_time %></span></h4>
+                                <h4 class="header-title m-t-0">End Date & Time: <span class="font-13"><%= data.end_date +' '+ data.end_time %></span></h4>
+                                <h4 class="header-title m-t-0">Status: <span class="font-13"><%= data.status == '1' ? 'pending' : data.status == '2' ? 'in-progress' : data.status == '3' ? 'abandoned' : data.status == '4' ? 'completed' : 'cancelled' %></span></h4>
+                                <h4 class="header-title m-t-0">Level Points: <span class="font-13"><%= data.status == '4' ? data.level_points : 0 %></span></h4>
+                                <h4 class="header-title m-t-0">Created At: <span class="font-13"><%= data?.createdAt %></span></h4>
+                                <h4 class="header-title m-t-4">Bookings Addons</h4>
+
+                                <%if (data?.booking_add_ons?.length) { %>
+                                    <% data?.booking_add_ons.forEach((v, k) => { %>
+                                        
+                                        <p class="text-muted m-b-20 font-13"><%= k + 1 %>. <%= v?.activity_add_on?.item_name || '' %> <span class="label label-danger"><%= v?.activity_add_on?.item_price || '' %> (INR)</span> <span class="label label-primary">Quantity: <%= v?.quantity || '' %></span></p>
+                                        
+                                    <% }) %>
+                                <% } else{ %>
+                                    <span class="col-sm-3 font-13">N/A</span>
+                                <% } %>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="col-lg-12 mt-4">
+                            <h5 class="text-custom m-b-5"> Activity BOOKING PAYMENT & TRANSACTIONS</h5>
+                            
+                            <%if (data?.booking_payment?.transactions?.length) { %>
+                                <h4 class="header-title m-t-0">Total Price: <span class="font-13"><%= data?.booking_payment?.total_price %> (<%= data?.booking_payment?.currency %>)</span></h4>
+                                <% data.booking_payment.transactions.forEach((v, k) => { %>
+                                    <div class="card-box">
+                                        <h4 class="header-title m-t-0">Transaction Payment Ref: <span class="font-13"><%= v.transaction_payment_ref %></span></h4>
+                                        <h4 class="header-title m-t-0">Transaction Refund Ref: <span class="font-13"><%= v.transaction_refund_ref || 'Null' %></span></h4>
+                                        <h4 class="header-title m-t-0">Entity: <span class="font-13"><%= v.entity %></span></h4>
+                                        <h4 class="header-title m-t-0">Amount: <span class="font-13"><%= v.amount %> (<%= v.currency %>)</span></h4>
+                                        <h4 class="header-title m-t-0">Method: <span class="font-13"><%= v.method %></span></h4>
+                                        <h4 class="header-title m-t-0">Status: <span class="font-13"><%= v.status %></span></h4>
+                                        <h4 class="header-title m-t-0">Created At: <span class="font-13"><%= data?.createdAt %></span></h4>
+                                    </div>
+                                <% }) %>
+                            <% } else{ %>
+                                <span class="col-sm-3 font-13">N/A</span>
+                            <% } %>
+    
+                        </div>
+
+                        <div class="col-lg-12 mt-4">
+                            <h5 class="text-custom m-b-5"> Activity BOOKING RATING & REVIEW </h5>
+                            <%if (data?.rating_review) { %>
+                            <div class="card-box ribbon-box">
+                                <div class="ribbon ribbon-primary"><%= data?.rating_review?.rating || '' %>&#11088;</div>
+                                <p class="m-b-0"><%= data?.rating_review?.review || '' %></p>
+                            </div>
+                            <% } else{ %>
+                                <span class="col-sm-3 font-13">N/A</span>
+                            <% } %>  
+                        </div>
+
+                        <h2 class="header-title m-t-4">Activity Detail</h2>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="text-center card-box">
+                                    <div class="clearfix"></div>
+                                    <div class="member-card">
+                                        <div class="thumb-xl member-thumb m-b-10 mx-auto">
+                                            <img src="<%= data?.rental_activity?.user?.image %>" class="rounded-circle img-thumbnail" alt="profile-image">
+                                        </div>
+                                        <div class="">
+                                            <h4 class="m-b-5 font-18"><%= data?.rental_activity?.user?.first_name || '' %> <%= data?.rental_activity?.user?.last_name || '' %></h4>
+                                            <p class="text-muted m-b-0"><span class="text-pink"> <%= data?.rental_activity?.user?.email || '' %> </span> </p>
+                                            <p class="text-muted"> <%= data?.rental_activity?.user?.country_code +' '+ data?.rental_activity?.user?.mobile_no || '' %> </p>
+                                        </div>
+                                        <p class="text-muted font-13"> <%= data?.rental_activity?.user?.city || '' %>, <%= data?.rental_activity?.user?.state || '' %>, <%= data?.rental_activity?.user?.country || '' %> </p>
+                                        <b>VENDOR</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <h4 class="header-title m-t-4">Price (INR)</h4>
+                                <span class="label label-danger"><%= data?.rental_activity?.activity_prices.find(v => v.rate_type == '1').amount || '' %>/Hour</span>
+                                <span class="label label-danger"><%= data?.rental_activity?.activity_prices.find(v => v.rate_type == '2').amount || '' %>/Day</span>
+                                <h4 class="header-title m-t-4">Quantity <span class="label label-success"><%= data?.rental_activity?.quantity || '' %></span></h4>
+                                <h4 class="header-title m-t-4">What to take</h4>
+
+                                <%if (data?.rental_activity?.activity_require_accessories?.filter(v => v.accessories_medium == '1')?.length) { %>
+
+                                    <% data?.rental_activity?.activity_require_accessories?.filter(v => v.accessories_medium == '1').forEach((v, k) => { %>
+                                        
+                                        <span class="label label-primary"><%= v?.name || '' %></span>
+
+                                    <% }) %>
+                                <% } else{ %>
+                                    <span class="col-sm-3 font-13">N/A</span>
+                                <% } %>
+
+                                <h4 class="header-title m-t-4">Things & service included</h4>
+
+                                <%if (data?.rental_activity?.activity_require_accessories?.filter(v => v.accessories_medium == '2')?.length) { %>
+                                
+                                    <% data?.rental_activity?.activity_require_accessories?.filter(v => v.accessories_medium == '2').forEach((v, k) => { %>
+                                        
+                                        <span class="label label-primary"><%= v?.name || '' %></span>
+
+                                    <% }) %>
+                                <% } else{ %>
+                                    <span class="col-sm-3 font-13">N/A</span>
+                                <% } %>
+
+                                <h4 class="header-title m-t-4">Addons</h4>
+
+                                <%if (data?.rental_activity?.activity_add_ons?.length) { %>
+                                    <% data?.rental_activity?.activity_add_ons.forEach((v, k) => { %>
+                                        
+                                        <p class="text-muted m-b-20 font-13"><%= k + 1 %>. <%= v?.item_name || '' %> <span class="label label-danger"><%= v?.item_price || '' %> (INR)</span> <span class="label label-primary">Quantity: <%= v?.quantity || '' %></span></p>
+                                        
+                                    <% }) %>
+                                <% } else{ %>
+                                    <span class="col-sm-3 font-13">N/A</span>
+                                <% } %>
+
+                            </div>
+                        </div>
+
+                        <h4 class="m-t-4 header-title m-b-0">Activity Video</h4>
+                        <div class="row">
+
+                            <%if (typeof data?.rental_activity?.activity_media.find(v => v.media_type == '2')?.media_path != 'undefined') { %>
+
+                            <div class="col-sm-3 positon-relative videotop">
+                                <a class="popup-vimeo" href="<%= data?.rental_activity?.activity_media.find(v => v.media_type == '2').media_path %>">
+                                    <img src="/assets/images/bg-countdown.jpg" alt="img" class="img-fluid positon-absolute">
+                                    <span class="videoIcon"> <i class="mdi mdi-play-circle-outline"></i></span>
+                                </a>    
+                            </div>
+
+                            <% } else{ %>
+                                <span class="col-sm-3 font-13">N/A</span>
+                            <% } %>
+                            
+                        </div>
+                        <h4 class="m-t-4 header-title m-b-4">Activity Images</h4>
+                        <div class="row activityImg">
+
+                            <% data?.rental_activity?.activity_media.filter(v => v.media_type == '1').forEach((v, k) => { %>
+
+                                <div class="col-sm-3">
+                                    <div class="activiBox">
+                                        <img src="<%= v?.media_path %>" alt="img" class="img-fluid"/>
+                                    </div>
+                                </div>
+        
+                            <% }) %>
+
+                        </div>
+                        <div class="col-lg-12 mt-4">
+                            <div class="card-box ribbon-box">
+                                <div class="ribbon ribbon-primary">Description</div>
+                                <p class="m-b-0"><%= data?.rental_activity?.description || '' %></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mt-4">
+                            <div class="card-box ribbon-box">
+                                <div class="ribbon ribbon-warning">Warning</div>
+                                <p class="m-b-0"><%= data?.rental_activity?.warning || '' %></p>
+                            </div>
+                        </div>
+
+                    <% } %>  
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,187 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Dashboard</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-sm-6">
+                <div class="card-box widget-box-two widget-two-custom">
+                    <i class="mdi mdi-account-convert widget-two-icon"></i>
+                    <div class="wigdet-two-content">
+                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Sub Admin</p>
+                        <h3 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><%= subAdminCount %></span></h3>
+                        <p class="m-0"><%= moment().format('DD MMMM YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card-box widget-box-two widget-two-custom">
+                    <i class="mdi mdi mdi-account widget-two-icon"></i>
+                    <div class="wigdet-two-content">
+                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Vendors</p>
+                        <h3 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><%= vendorsCount %></span></h3>
+                        <p class="m-0"><%= moment().format('DD MMMM YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card-box widget-box-two widget-two-custom">
+                    <i class="mdi mdi-account-multiple widget-two-icon"></i>
+                    <div class="wigdet-two-content">
+                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Users</p>
+                        <h3 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><%= usersCount %></span></h3>
+                        <p class="m-0"><%= moment().format('DD MMMM YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card-box widget-box-two widget-two-custom">
+                    <i class="mdi mdi mdi-taxi widget-two-icon"></i>
+                    <div class="wigdet-two-content">
+                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Taxi Drivers</p>
+                        <h3 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><%= taxiDriversCount %></span></h3>
+                        <p class="m-0"><%= moment().format('DD MMMM YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card-box widget-box-two widget-two-custom">
+                    <i class="mdi mdi mdi-hotel widget-two-icon"></i>
+                    <div class="wigdet-two-content">
+                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Hotels</p>
+                        <h3 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><%= hotelsCount %></span></h3>
+                        <p class="m-0"><%= moment().format('DD MMMM YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card-box widget-box-two widget-two-custom">
+                    <i class="mdi mdi-crown widget-two-icon"></i>
+                    <div class="wigdet-two-content">
+                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Categories</p>
+                        <h3 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><%= categoriesCount %></span></h3>
+                        <p class="m-0"><%= moment().format('DD MMMM YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card-box widget-box-two widget-two-custom">
+                    <i class="mdi mdi-auto-fix widget-two-icon"></i>
+                    <div class="wigdet-two-content">
+                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Activities</p>
+                        <h3 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><%= activitiesCount %></span></h3>
+                        <p class="m-0"><%= moment().format('DD MMMM YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card-box widget-box-two widget-two-custom">
+                    <i class="mdi mdi-auto-fix widget-two-icon"></i>
+                    <div class="wigdet-two-content">
+                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Vendor Activities</p>
+                        <h3 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><%= vendorActivitiesCount %></span></h3>
+                        <p class="m-0"><%= moment().format('DD MMMM YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-4 col-lg-4">
+                <div class="card-box">
+                    <h4 class="header-title m-t-0 m-b-30">Total Unique Visitors</h4>
+                    <div class="widget-chart text-center">
+                        <div id="donut-chart" style="height: 270px;"></div>
+                        <div class="row text-center m-t-30">
+                            <div class="col-4">
+                                <h3 data-plugin="counterup"><%= uniqueVisitorCount[0].unique_visitor_count %></h3>
+                                <p class="text-muted m-b-5">Male</p>
+                            </div>
+                            <div class="col-4">
+                                <h3 data-plugin="counterup"><%= uniqueVisitorCount[1].unique_visitor_count %></h3>
+                                <p class="text-muted m-b-5">Female</p>
+                            </div>
+                            <div class="col-4">
+                                <h3 data-plugin="counterup"><%= uniqueVisitorCount[2].unique_visitor_count %></h3>
+                                <p class="text-muted m-b-5">Other</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4">
+                <div class="card-box">
+                    <h4 class="header-title m-t-0 m-b-30">Activities Bookings Overview</h4>
+                    <div class="widget-chart text-center">
+                        <div id="pie-chart" style="height: 270px;"></div>
+                        <div class="row text-center m-t-30">
+                            <div class="col-12">
+                                <h3 data-plugin="counterup"><%= bookingsCount %></h3>
+                                <p class="text-muted m-b-5">Total Activities Bookings</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4">
+                <div class="card-box">
+                    <h4 class="header-title m-t-0 m-b-30">Taxi Bookings Overview</h4>
+                    <div class="widget-chart text-center">
+                        <div id="pie-chart1" style="height: 270px;"></div>
+                        <div class="row text-center m-t-30">
+                            <div class="col-12">
+                                <h3 data-plugin="counterup"><%= taxiBookingCount %></h3>
+                                <p class="text-muted m-b-5">Total Taxi Bookings</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-8 col-lg-8">
+                <div class="card-box">
+                    <h4 class="header-title m-t-0">BUSINESS OVERVIEW</h4>
+                    <div id="morris-bar-example" style="height: 315px;"></div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4">
+                <div class="card-box">
+                    <h4 class="header-title m-t-0">VISITORS DEVICE TYPE</h4>
+                    <div class="google-chart text-center">
+                        <div class="chart m-t-30" id="donut-chart1" style="height: 280px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% if(!locals.sessionUser?.admin_permissions || locals.sessionUser?.admin_permissions?.adventure_activities__view == '1') { %>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card-box">
+                    <h4 class="header-title m-t-0 m-b-30">All Transactions Overview</h4>
+                    <div class="text-center">
+                        <h3 class="m-b-30"><i class="mdi mdi-arrow-down-bold-hexagon-outline text-danger"></i> <small>INR</small></h3>
+                    </div>
+                    <div class="chart-container">
+                        <div class="" style="height:280px" id="user_type_bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+    </div>
+</div>

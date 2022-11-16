@@ -1,0 +1,68 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title float-left">Manage Users</h4>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Admin</a></li>
+                        <li class="breadcrumb-item active">View</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center card-box">
+                    <div class="clearfix"></div>
+                    <div class="member-card">
+                        <div class="thumb-xl member-thumb m-b-10 mx-auto">
+                            <img src="<%= user.image %>" class="rounded-circle img-thumbnail" alt="profile-image">
+                            <i class="mdi mdi-star-circle member-star text-success" title="verified user"></i>
+                        </div>
+                        <div class="">
+                            <h4 class="m-b-5 font-18"><%= user?.first_name || '' %> <%= user?.last_name || '' %></h4>
+                            <p class="text-muted m-b-0"><span class="text-pink"> <%= user?.email || '' %> </span> </p>
+                            <p class="text-muted"> <%= user?.country_code +' '+ user?.mobile_no || '' %> </p>
+                        </div>
+                        <p class="text-muted font-13"> <%= user?.city || '' %>, <%= user?.state || '' %>, <%= user?.country || '' %> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-20">Details</h4>
+                    <div class="">
+                        <h5 class="text-custom m-b-5"><span class="text-muted">Gender:</span> <%= user?.gender || '' %> </h5>
+                        <h5 class="text-custom m-b-5"><span class="text-muted">Date of Birth:</span> <%= moment(user?.dob).format('DD-MM-YYYY') || '' %> </h5>
+                        <h5 class="text-custom m-b-5"><span class="text-muted">Address:</span> <span class="font-13 m-b-0"> <%= user?.address || '' %> </span></h5>
+                        <h5 class="text-custom m-b-5"><span class="text-muted">Pin Code:</span> <span class="font-13 m-b-0"> <%= user?.pin_code || '' %> </span></h5>
+                        <h5 class="text-custom m-b-5"><span class="text-muted">Landmark:</span> <span class="font-13 m-b-0"> <%= user?.landmark || '' %> </span></h5>
+                        <h5 class="text-custom m-b-5"><span class="text-muted">Level:</span> <span class="font-13 m-b-0"> <%= (user?.level == '1') ? 'Beginner' : (user?.level == '2') ? 'Intermediate' : "Expert" %> </span></h5>
+                        <h5 class="text-custom m-b-5"><span class="text-muted">Status:</span> <span class="font-13 m-b-0"> <%= (user.status == '1') ? 'Active' : 'Inactive' %> </span></h5>
+                    </div>
+                    <h4 class="header-title mt-4">Intersted Activities</h4>
+                    <div class="">
+                        <h5 class="text-custom m-b-5"><span class="text-muted">Activities:</span> 
+                            <%if (user?.user_interested_activities?.length) { %>
+                                <% user?.user_interested_activities.forEach((value, key) => { %>
+                                    
+                                    <span><%= value?.activity?.title %><% if(key != (user?.user_interested_activities.length - 1)) { %>,<% } %></span>
+
+                                <% }) %>
+                            <% } else{ %>
+                                <span class="font-13">N/A</span>
+                            <% } %>
+                        </h5>
+                    </div>
+                    <h4 class="header-title mt-3">Total Level Points</h4>
+                    <div class="">
+                        <h5 class="text-custom"><span class="text-muted">Level Points:</span> <%= user?.dataValues?.total_level_points || 0 %> </h5>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
